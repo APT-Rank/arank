@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>아파트 랭크 - 우리 아파트 입지는 몇 등일까?</title>
+  <meta property="og:type" content="website"> 
+  <meta property="og:title" content="AI가 선정한 대한민국 아파트 입지 랭크">
+  <meta property="og:description" content="AI가 선정하는 대한민국 아파트 입지 랭크">
+  <meta property="og:image" content="https://anitooni.github.io/APT-Rank/thumbnail.jpg">
+  <meta property="og:url" content="https://anitooni.github.io/APT-Rank/">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="shortcut icon" href="https://anitooni.github.io/APT-Rank/apr-rank.png"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>  
+
+  <link href="./css/style.css" rel="stylesheet"/>
+</head>
+<style>  
+</style>
+
+<body>
+  <div id="container">
+    <div id="centerBox">
+      <div id="titleBar">
+        <div id='logo'></div>
+        <div id="title" onClick='scrollUp()'>아파트 랭크</div>
+        <div id='help' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice()'><i class="fas fa-question-circle"></i></div>
+      </div>      
+
+      <div id="selections">
+        <div id="sido_selection"><select id="sido" onChange="optionChange()"></select></div>
+        <div id="gungu_selection"><select id="gungu" onChange="updateRegion()"></select></div>
+        <div id="month_selection">
+          <select id="month" onChange="updateMonth()">            
+            <option value="202201" selected>2022년 01월</option>            
+          </select>          
+        </div>
+      </div>
+
+      <div id="dataList"></div>
+    </div>
+  </div>
+
+  <!-- Vertically centered scrollable modal -->
+  <!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id='aptDetail'></div>
+        <div id='footer'></div>
+      </div>
+    </div>
+  </div>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>  
+</body>
+
+<script>
+  var selectedMonth = "202201"
+  var selectedRegion = "Korea"
+  var selectedSubRegion = "1000000000_Korea"
+
+  var regionName = ""
+  var valueSum = 0;
+  var livingSum = 0;
+  var transportSum = 0;
+  var infraSum = 0;
+  var eduSum = 0;
+
+  var regValueSum = 0;
+  var regSupplySum = 0;
+  var regPopSum = 0;
+  var regJobSum = 0;
+  var linked = ""
+  var regionValue = ""
+
+  var itemNum = 0;
+  var aptData = "";
+  var prevValue = 0;
+
+
+  var inKorea = [ ['공급필요/인구/일자리', '1000000000_Korea'] ]
+
+  var inSeoul = [
+      ['강남구', '1168000000_Seoul_Gangnam'], 
+      ['강동구', '1174000000_Seoul_Gangdong'], 
+      ['강북구', '1130500000_Seoul_Gangbuk'], 
+      ['강서구', '1150000000_Seoul_Gangseo'], 
+      ['관악구', '1162000000_Seoul_Gwanak'], 
+      ['광진구', '1121500000_Seoul_Gwangjin'], 
+      ['구로구', '1153000000_Seoul_Guro'], 
+      ['금천구', '1154500000_Seoul_Geumcheon'], 
+      ['노원구', '1135000000_Seoul_Nowon'], 
+      ['도봉구', '1132000000_Seoul_Dobong'], 
+      ['동대문구', '1123000000_Seoul_Dongdaemun'], 
+      ['동작구', '1159000000_Seoul_Dongjak'], 
+      ['마포구', '1144000000_Seoul_Mapo'], 
+      ['서대문구', '1141000000_Seoul_Seodaemun'], 
+      ['서초구', '1165000000_Seoul_Seocho'], 
+      ['성동구', '1120000000_Seoul_Seongdong'], 
+      ['성북구', '1129000000_Seoul_Seongbuk'], 
+      ['송파구', '1171000000_Seoul_Songpa'], 
+      ['양천구', '1147000000_Seoul_Yangcheon'], 
+      ['영등포구', '1156000000_Seoul_Yeongdeungpo'], 
+      ['용산구', '1117000000_Seoul_Yongsan'], 
+      ['은평구', '1138000000_Seoul_Eunpyeong'], 
+      ['종로구', '1111000000_Seoul_Jongno'], 
+      ['중구', '1114000000_Seoul_Jung'], 
+      ['중랑구', '1126000000_Seoul_Jungnang']
+    ]
+
+  var inBusan = [
+      ['강서구', '2644000000_Busan_Gangseo'], 
+      ['금정구', '2641000000_Busan_Geumjeong'], 
+      ['기장군', '2671000000_Busan_Gijangn'], 
+      ['남구', '2629000000_Busan_Nam'], 
+      ['동구', '2617000000_Busan_Dong'], 
+      ['동래구', '2626000000_Busan_Dongnae'], 
+      ['부산진구', '2623000000_Busan_Busanjin'], 
+      ['북구', '2632000000_Busan_Buk'], 
+      ['사상구', '2653000000_Busan_Sasang'], 
+      ['사하구', '2638000000_Busan_Saha'], 
+      ['서구', '2614000000_Busan_Seo'], 
+      ['수영구', '2650000000_Busan_Suyeong'], 
+      ['연제구', '2647000000_Busan_Yeonje'], 
+      ['영도구', '2620000000_Busan_Yeongdo'], 
+      ['중구', '2611000000_Busan_Jung'], 
+      ['해운대구', '2635000000_Busan_Haeundae']
+    ]
+
+  var inDaegu = [
+      ['남구', '2720000000_Daegu_Nam'], 
+      ['달서구', '2729000000_Daegu_Dalseo'], 
+      ['달성군', '2771000000_Daegu_Dalseong'], 
+      ['동구', '2714000000_Daegu_Dong'], 
+      ['북구', '2723000000_Daegu_Buk'], 
+      ['서구', '2717000000_Daegu_Seo'], 
+      ['수성구', '2726000000_Daegu_Suseong'], 
+      ['중구', '2711000000_Daegu_Jung']
+    ]
+
+  var inIncheon = [
+      ['강화군', '2871000000_Incheon_Ganghwa'], 
+      ['계양구', '2824500000_Incheon_Gyeyang'], 
+      ['남동구', '2820000000_Incheon_Namdong'], 
+      ['동구', '2814000000_Incheon_Dong'], 
+      ['미추홀구', '2817700000_Incheon_Michuhol'], 
+      ['부평구', '2823700000_Incheon_Bupyeong'], 
+      ['서구', '2826000000_Incheon_Seo'], 
+      ['연수구', '2818500000_Incheon_Yeonsu'], 
+      ['옹진군', '2872000000_Incheon_Ongjin'], 
+      ['중구', '2811000000_Incheon_Jung']
+    ]
+
+  var inGwangju = [
+      ['광산구', '2920000000_Gwangju_Gwangsan'], 
+      ['남구', '2915500000_Gwangju_Nam'], 
+      ['동구', '2911000000_Gwangju_Dong'], 
+      ['북구', '2917000000_Gwangju_Buk'], 
+      ['서구', '2914000000_Gwangju_Seo']
+    ]
+
+  var inDaejeon = [
+      ['대덕구', '3023000000_Daejeon_Daedeok'], 
+      ['동구', '3011000000_Daejeon_Dong'], 
+      ['서구', '3017000000_Daejeon_Seo'], 
+      ['유성구', '3020000000_Daejeon_Yuseong'], 
+      ['중구', '3014000000_Daejeon_Jung']
+    ]
+
+  var inUlsan = [
+      ['남구', '3114000000_Ulsan_Nam'], 
+      ['동구', '3117000000_Ulsan_Dong'], 
+      ['북구', '3120000000_Ulsan_Buk'], 
+      ['울주군', '3171000000_Ulsan_Ulju'], 
+      ['중구', '3111000000_Ulsan_Jung']
+    ]
+
+  var inSejong = [['세종시', '3611000000_Sejong_Sejong']]
+
+  var inGyeonggi = [
+      ['가평군', '4182000000_Gyeonggi_Gapyeong'], 
+      ['고양시 덕양구', '4128100000_Gyeonggi_Goyang_Deogyang'], 
+      ['고양시 일산동구', '4128500000_Gyeonggi_Goyang_Ilsandong'], 
+      ['고양시 일산서구', '4128700000_Gyeonggi_Goyang_Ilsanseo'], 
+      ['과천시', '4129000000_Gyeonggi_Gwacheon'], 
+      ['광명시', '4121000000_Gyeonggi_Gwangmyeong'], 
+      ['광주시', '4161000000_Gyeonggi_Gwangju'], 
+      ['구리시', '4131000000_Gyeonggi_Guri'], 
+      ['군포시', '4141000000_Gyeonggi_Gunpo'], 
+      ['김포시', '4157000000_Gyeonggi_Gimpo'], 
+      ['남양주시', '4136000000_Gyeonggi_Namyangju'], 
+      ['동두천시', '4125000000_Gyeonggi_Dongducheon'], 
+      ['부천시', '4119000000_Gyeonggi_Bucheon'], 
+      ['성남시 분당구', '4113500000_Gyeonggi_Seongnam_Bundang'], 
+      ['성남시 수정구', '4113100000_Gyeonggi_Seongnam_Sujeong'], 
+      ['성남시 중원구', '4113300000_Gyeonggi_Seongnam_Jungwon'], 
+      ['수원시 권선구', '4111300000_Gyeonggi_Suwon_Gwonseon'], 
+      ['수원시 영통구', '4111700000_Gyeonggi_Suwon_Yeongtong'], 
+      ['수원시 장안구', '4111100000_Gyeonggi_Suwon_Jangan'], 
+      ['수원시 팔달구', '4111500000_Gyeonggi_Suwon_Paldal'], 
+      ['시흥시', '4139000000_Gyeonggi_Siheung'], 
+      ['안산시 단원구', '4127300000_Gyeonggi_Ansan_Danwon'], 
+      ['안산시 상록구', '4127100000_Gyeonggi_Ansan_Sangnok'], 
+      ['안성시', '4155000000_Gyeonggi_Anseong'], 
+      ['안양시 동안구', '4117300000_Gyeonggi_Anyang_Dongan'], 
+      ['안양시 만안구', '4117100000_Gyeonggi_Anyang_Manan'], 
+      ['양주시', '4163000000_Gyeonggi_Yangju'], 
+      ['양평군', '4183000000_Gyeonggi_Yangpyeong'], 
+      ['여주시', '4167000000_Gyeonggi_Yeoju'], 
+      ['연천군', '4180000000_Gyeonggi_Yeoncheon'], 
+      ['오산시', '4137000000_Gyeonggi_Osan'], 
+      ['용인시 기흥구', '4146300000_Gyeonggi_Yongin_Giheung'], 
+      ['용인시 수지구', '4146500000_Gyeonggi_Yongin_Suji'], 
+      ['용인시 처인구', '4146100000_Gyeonggi_Yongin_Cheoin'], 
+      ['의왕시', '4143000000_Gyeonggi_Uiwang'], 
+      ['의정부시', '4115000000_Gyeonggi_Uijeongbu'], 
+      ['이천시', '4150000000_Gyeonggi_Icheon'], 
+      ['파주시', '4148000000_Gyeonggi_Paju'], 
+      ['평택시', '4122000000_Gyeonggi_Pyeongtaek'], 
+      ['포천시', '4165000000_Gyeonggi_Pocheon'], 
+      ['하남시', '4145000000_Gyeonggi_Hanam'], 
+      ['화성시', '4159000000_Gyeonggi_Hwaseong']
+    ]
+
+  var inGangwondo=[
+      ['강릉시', '4215000000_Gangwondo_Gangneung'], 
+      ['고성군', '4282000000_Gangwondo_Goseong'], 
+      ['동해시', '4217000000_Gangwondo_Donghae'], 
+      ['삼척시', '4223000000_Gangwondo_Samcheok'], 
+      ['속초시', '4221000000_Gangwondo_Sokcho'], 
+      ['양구군', '4280000000_Gangwondo_Yanggu'], 
+      ['양양군', '4283000000_Gangwondo_Yangyang'], 
+      ['영월군', '4275000000_Gangwondo_Yeongwol'], 
+      ['원주시', '4213000000_Gangwondo_Wonju'], 
+      ['인제군', '4281000000_Gangwondo_Inje'], 
+      ['정선군', '4277000000_Gangwondo_Jeongseon'], 
+      ['철원군', '4278000000_Gangwondo_Cheorwon'], 
+      ['춘천시', '4211000000_Gangwondo_Chuncheon'], 
+      ['태백시', '4219000000_Gangwondo_Taebaek'], 
+      ['평창군', '4276000000_Gangwondo_Pyeongchang'], 
+      ['홍천군', '4272000000_Gangwondo_Hongcheon'], 
+      ['화천군', '4279000000_Gangwondo_Hwacheon'], 
+      ['횡성군', '4273000000_Gangwondo_Hoengseong']
+    ]
+
+  var inChungcheongbukdo = [
+      ['괴산군', '4376000000_Chungcheongbukdo_Goesan'], 
+      ['단양군', '4380000000_Chungcheongbukdo_Danyang'], 
+      ['보은군', '4372000000_Chungcheongbukdo_Boeun'], 
+      ['영동군', '4374000000_Chungcheongbukdo_Yeongdong'], 
+      ['옥천군', '4373000000_Chungcheongbukdo_Okcheon'], 
+      ['음성군', '4377000000_Chungcheongbukdo_Eumseong'], 
+      ['제천시', '4315000000_Chungcheongbukdo_Jecheon'], 
+      ['증평군', '4374500000_Chungcheongbukdo_Jeungpyeong'], 
+      ['진천군', '4375000000_Chungcheongbukdo_Jincheon'], 
+      ['청주시 상당구', '4311100000_Chungcheongbukdo_Cheongju_Sangdang'], 
+      ['청주시 서원구', '4311200000_Chungcheongbukdo_Cheongju_Seowon'], 
+      ['청주시 청원구', '4311400000_Chungcheongbukdo_Cheongju_Cheongwon'], 
+      ['청주시 흥덕구', '4311300000_Chungcheongbukdo_Cheongju_Heungdeok'], 
+      ['충주시', '4313000000_Chungcheongbukdo_Chungju']
+    ]
+
+  var inChungcheongnamdo = [
+      ['계룡시', '4425000000_Chungcheongnamdo_Gyeryong'], 
+      ['공주시', '4415000000_Chungcheongnamdo_Gongju'], 
+      ['금산군', '4471000000_Chungcheongnamdo_Geumsan'], 
+      ['논산시', '4423000000_Chungcheongnamdo_Nonsan'], 
+      ['당진시', '4427000000_Chungcheongnamdo_Dangjin'], 
+      ['보령시', '4418000000_Chungcheongnamdo_Boryeong'], 
+      ['부여군', '4476000000_Chungcheongnamdo_Buyeo'], 
+      ['서산시', '4421000000_Chungcheongnamdo_Seosan'], 
+      ['서천군', '4477000000_Chungcheongnamdo_Seocheon'], 
+      ['아산시', '4420000000_Chungcheongnamdo_Asan'], 
+      ['예산군', '4481000000_Chungcheongnamdo_Yesan'], 
+      ['천안시 동남구', '4413100000_Chungcheongnamdo_Cheonan_Dongnam'], 
+      ['천안시 서북구', '4413300000_Chungcheongnamdo_Cheonan_Seobuk'], 
+      ['청양군', '4479000000_Chungcheongnamdo_Cheongyang'], 
+      ['태안군', '4482500000_Chungcheongnamdo_Taean'], 
+      ['홍성군', '4480000000_Chungcheongnamdo_Hongseong']
+    ]
+
+  var inJeollabukdo = [
+      ['고창군', '4579000000_Jeollabukdo_Gochang'], 
+      ['군산시', '4513000000_Jeollabukdo_Gunsan'], 
+      ['김제시', '4521000000_Jeollabukdo_Gimje'], 
+      ['남원시', '4519000000_Jeollabukdo_Namwon'], 
+      ['무주군', '4573000000_Jeollabukdo_Muju'], 
+      ['부안군', '4580000000_Jeollabukdo_Buan'], 
+      ['순창군', '4577000000_Jeollabukdo_Sunchang'], 
+      ['완주군', '4571000000_Jeollabukdo_Wanju'], 
+      ['익산시', '4514000000_Jeollabukdo_Iksan'], 
+      ['임실군', '4575000000_Jeollabukdo_Imsil'], 
+      ['장수군', '4574000000_Jeollabukdo_Jangsu'], 
+      ['전주시 덕진구', '4511300000_Jeollabukdo_Jeonju_Deokjin'], 
+      ['전주시 완산구', '4511100000_Jeollabukdo_Jeonju_Wansan'], 
+      ['정읍시', '4518000000_Jeollabukdo_Jeongeup'], 
+      ['진안군', '4572000000_Jeollabukdo_Jinan']
+    ]
+
+  var inJeollanamdo = [
+      ['강진군', '4681000000_Jeollanamdo_Gangjin'], 
+      ['고흥군', '4677000000_Jeollanamdo_Goheung'], 
+      ['곡성군', '4672000000_Jeollanamdo_Gokseong'], 
+      ['광양시', '4623000000_Jeollanamdo_Gwangyang'], 
+      ['구례군', '4673000000_Jeollanamdo_Gurye'], 
+      ['나주시', '4617000000_Jeollanamdo_Naju'], 
+      ['담양군', '4671000000_Jeollanamdo_Damyang'], 
+      ['목포시', '4611000000_Jeollanamdo_Mokpo'], 
+      ['무안군', '4684000000_Jeollanamdo_Muan'], 
+      ['보성군', '4678000000_Jeollanamdo_Boseong'], 
+      ['순천시', '4615000000_Jeollanamdo_Suncheon'], 
+      ['신안군', '4691000000_Jeollanamdo_Sinan'], 
+      ['여수시', '4613000000_Jeollanamdo_Yeosu'], 
+      ['영광군', '4687000000_Jeollanamdo_Yeonggwang'], 
+      ['영암군', '4683000000_Jeollanamdo_Yeongam'], 
+      ['완도군', '4689000000_Jeollanamdo_Wando'], 
+      ['장성군', '4688000000_Jeollanamdo_Jangseong'], 
+      ['장흥군', '4680000000_Jeollanamdo_Jangheung'], 
+      ['진도군', '4690000000_Jeollanamdo_Jindo'], 
+      ['함평군', '4686000000_Jeollanamdo_Hampyeong'], 
+      ['해남군', '4682000000_Jeollanamdo_Haenam'], 
+      ['화순군', '4679000000_Jeollanamdo_Hwasun']
+    ]
+
+  var inGyeongsangbukdo = [
+      ['경산시', '4729000000_Gyeongsangbukdo_Gyeongsan'], 
+      ['경주시', '4713000000_Gyeongsangbukdo_Gyeongju'], 
+      ['고령군', '4783000000_Gyeongsangbukdo_Goryeong'], 
+      ['구미시', '4719000000_Gyeongsangbukdo_Gumi'], 
+      ['군위군', '4772000000_Gyeongsangbukdo_Gunwi'], 
+      ['김천시', '4715000000_Gyeongsangbukdo_Gimcheon'], 
+      ['문경시', '4728000000_Gyeongsangbukdo_Mungyeong'], 
+      ['봉화군', '4792000000_Gyeongsangbukdo_Bonghwa'], 
+      ['상주시', '4725000000_Gyeongsangbukdo_Sangju'], 
+      ['성주군', '4784000000_Gyeongsangbukdo_Seongju'], 
+      ['안동시', '4717000000_Gyeongsangbukdo_Andong'], 
+      ['영덕군', '4777000000_Gyeongsangbukdo_Yeongdeok'], 
+      ['영양군', '4776000000_Gyeongsangbukdo_Yeongyang'], 
+      ['영주시', '4721000000_Gyeongsangbukdo_Yeongju'], 
+      ['영천시', '4723000000_Gyeongsangbukdo_Yeongcheon'], 
+      ['예천군', '4790000000_Gyeongsangbukdo_Yecheon'], 
+      ['울릉군', '4794000000_Gyeongsangbukdo_Ulleung'], 
+      ['울진군', '4793000000_Gyeongsangbukdo_Uljin'], 
+      ['의성군', '4773000000_Gyeongsangbukdo_Uiseong'], 
+      ['청도군', '4782000000_Gyeongsangbukdo_Cheongdo'], 
+      ['청송군', '4775000000_Gyeongsangbukdo_Cheongsong'], 
+      ['칠곡군', '4785000000_Gyeongsangbukdo_Chilgok'], 
+      ['포항시 남구', '4711100000_Gyeongsangbukdo_Pohang_Nam'], 
+      ['포항시 북구', '4711300000_Gyeongsangbukdo_Pohang_Buk']
+    ]
+
+  var inGyeongsangnamdo = [
+      ['거제시', '4831000000_Gyeongsangnamdo_Geoje'], 
+      ['거창군', '4888000000_Gyeongsangnamdo_Geochang'], 
+      ['고성군', '4882000000_Gyeongsangnamdo_Goseong'], 
+      ['김해시', '4825000000_Gyeongsangnamdo_Gimhae'], 
+      ['남해군', '4884000000_Gyeongsangnamdo_Namhae'], 
+      ['밀양시', '4827000000_Gyeongsangnamdo_Miryang'], 
+      ['사천시', '4824000000_Gyeongsangnamdo_Sacheon'], 
+      ['산청군', '4886000000_Gyeongsangnamdo_Sancheong'], 
+      ['양산시', '4833000000_Gyeongsangnamdo_Yangsan'], 
+      ['의령군', '4872000000_Gyeongsangnamdo_Uiryeong'], 
+      ['진주시', '4817000000_Gyeongsangnamdo_Jinju'], 
+      ['창녕군', '4874000000_Gyeongsangnamdo_Changnyeong'], 
+      ['창원시 마산합포구', '4812500000_Gyeongsangnamdo_Changwon_Masanhappo'], 
+      ['창원시 마산회원구', '4812700000_Gyeongsangnamdo_Changwon_Masanhoewon'], 
+      ['창원시 성산구', '4812300000_Gyeongsangnamdo_Changwon_Seongsan'], 
+      ['창원시 의창구', '4812100000_Gyeongsangnamdo_Changwon_Uichang'], 
+      ['창원시 진해구', '4812900000_Gyeongsangnamdo_Changwon_Jinhae'], 
+      ['통영시', '4822000000_Gyeongsangnamdo_Tongyeong'], 
+      ['하동군', '4885000000_Gyeongsangnamdo_Hadong'], 
+      ['함안군', '4873000000_Gyeongsangnamdo_Haman'], 
+      ['함양군', '4887000000_Gyeongsangnamdo_Hamyang'], 
+      ['합천군', '4889000000_Gyeongsangnamdo_Hapcheon']
+    ]
+
+  var inJejudo = [
+      ['제주시', '5011000000_Jejudo_Jeju'], 
+      ['서귀포시', '5013000000_Jejudo_Seogwipo']
+    ]
+
+  var regions = [
+      ['전국', 'Korea'], ['서울시', 'Seoul'], ['부산시', 'Busan'], ['대구시', 'Daegu'], ['인천시', 'Incheon'], ['광주시', 'Gwangju'], ['대전시', 'Daejeon'], 
+      ['울산시', 'Ulsan'], ['세종시', 'Sejong'], ['경기도', 'Gyeonggi'], ['강원도', 'Gangwondo'], ['충청북도', 'Chungcheongbukdo'], ['충청남도', 'Chungcheongnamdo'],
+      ['전라북도', 'Jeollabukdo'], ['전라남도', 'Jeollanamdo'], ['경상북도', 'Gyeongsangbukdo'], ['경상남도', 'Gyeongsangnamdo'], ['제주도', 'Jejudo']
+    ]  
+
+  $(document).ready(function(){
+    $('div.modal').modal("hide");
+    var option = ""
+    for(i = 0 ; i < regions.length ; i++){        
+        option += "<option value='" + regions[i][1] + "'>" + regions[i][0] + "</option>"
+    }
+    $('#sido').html(option)
+
+    //var lastRegion = localStorage.getItem('lastRegion')
+    //var lastSubRegion = localStorage.getItem('lastSubRegion')
+    //var lastMonth = localStorage.getItem('lastMonth')
+
+    var lastRegion = sessionStorage.getItem('lastRegion')
+    var lastSubRegion = sessionStorage.getItem('lastSubRegion')
+    var lastMonth = sessionStorage.getItem('lastMonth')    
+
+    if(lastRegion != null){
+      selectedRegion = lastRegion
+    }
+    if(lastSubRegion != null){
+      selectedSubRegion = lastSubRegion
+    }
+    if(lastMonth != null){
+      selectedMonth = lastMonth
+    }    
+
+    $("#sido").val(selectedRegion).prop("selected", true);
+    regionName = $("#sido option:selected").val();
+    console.log(selectedSubRegion)
+    optionChange(selectedSubRegion)
+    updateMonth()
+
+    //var regionSubName = $("#gungu option:selected").val()    
+
+    month = selectedMonth
+    //updateTable(month, regionSubName)
+
+    $('div.modal').on('show.bs.modal', function() {
+      var modal = this;              
+      var hash = modal.id;
+      window.location.hash = hash;
+      window.onhashchange = function() {
+        if (!location.hash){
+          $(modal).modal('hide');
+        }
+      }
+    });
+    $('div.modal').on('hidden.bs.modal', function() {
+      var hash = this.id;
+      history.replaceState('', document.title, window.location.pathname);
+    })
+  });
+
+  function saveLocalStorage(){
+    //localStorage.setItem('lastRegion', selectedRegion)
+    //localStorage.setItem('lastSubRegion', selectedSubRegion)
+    //localStorage.setItem('lastMonth', selectedMonth)
+    
+    sessionStorage.setItem('lastRegion', selectedRegion)
+    sessionStorage.setItem('lastSubRegion', selectedSubRegion)
+    sessionStorage.setItem('lastMonth', selectedMonth)
+  }
+
+  function scrollUp(){
+    $( 'html, body' ).animate( { scrollTop : 0 }, 50 );
+  }
+
+  function optionChange(subRegion){
+    selectedSubRegion = subRegion
+    regionName = $("#sido option:selected").val();
+    selectedRegion = regionName
+    var changeItem
+    
+    if(regionName == 'Korea'){
+      changeItem = inKorea
+    }
+    if(regionName == 'Seoul'){
+      changeItem = inSeoul
+    }
+    if(regionName == 'Busan'){
+      changeItem = inBusan
+    }
+    if(regionName == 'Incheon'){
+      changeItem = inIncheon
+    }
+    if(regionName == 'Daegu'){
+      changeItem = inDaegu
+    }
+    if(regionName == 'Gwangju'){
+      changeItem = inGwangju
+    }
+    if(regionName == 'Daejeon'){
+      changeItem = inDaejeon
+    }
+    if(regionName == 'Ulsan'){
+      changeItem = inUlsan
+    }
+    if(regionName == 'Sejong'){
+      changeItem = inSejong
+    }
+    if(regionName == 'Gyeonggi'){
+      changeItem = inGyeonggi
+    }
+    if(regionName == 'Gangwondo'){
+      changeItem = inGangwondo
+    }
+    if(regionName == 'Chungcheongbukdo'){
+      changeItem = inChungcheongbukdo
+    }
+    if(regionName == 'Chungcheongnamdo'){
+      changeItem = inChungcheongnamdo
+    }
+    if(regionName == 'Jeollabukdo'){
+      changeItem = inJeollabukdo
+    }
+    if(regionName == 'Jeollanamdo'){
+      changeItem = inJeollanamdo
+    }
+    if(regionName == 'Gyeongsangbukdo'){
+      changeItem = inGyeongsangbukdo      
+    }
+    if(regionName == 'Gyeongsangnamdo'){
+      changeItem = inGyeongsangnamdo
+    }
+    if(regionName == 'Jejudo'){
+      changeItem = inJejudo
+    }
+    $('#gungu').empty();
+
+    for(var i = 0 ; i < changeItem.length; i++){      
+      var subOption = $("<option value='" + changeItem[i][1] + "'>" + changeItem[i][0] + "</option>")
+      $('#gungu').append(subOption);
+    }
+
+    if(selectedSubRegion == undefined){      
+      $("#gungu").val(changeItem[0][1]).prop("selected", true);
+      selectedSubRegion = $("#gungu option:selected").val()      
+    }
+    else{
+      $("#gungu").val(selectedSubRegion).prop("selected", true);
+    }
+    
+    updateRegion()
+  }
+
+  function updateMonth(){    
+    selectedMonth = $("#month option:selected").val()
+    console.log(selectedMonth)
+    updateTable(selectedMonth, selectedSubRegion)
+    regionName = $("#sido option:selected").text()
+  }
+  function updateRegion(){
+    //var selection = document.getElementById("gungu")
+    selectedRegion = $("#sido option:selected").val()
+    selectedSubRegion = $("#gungu option:selected").val()
+
+    saveLocalStorage()
+
+    if (selectedSubRegion != "1000000000_Korea"){
+      updateTable(selectedMonth, selectedSubRegion)
+      regionName = $("#sido option:selected").text()      
+    }
+    else{
+      updateRegionTable(selectedMonth)
+    }
+  }
+
+  function updateTable(month, region){    
+    $('div.modal').modal("hide");
+    $('html').scrollTop(0)
+    //console.log("AAAAAAAAAA", region)
+    url = "https://anitooni.github.io/APT-Rank/" + month + "/" + region + ".json"    
+    $('#dataList').html("");
+
+    $.getJSON(url, function(json) {
+        //console.log(json);
+        aptData = json;
+        itemNum = json.data.length;
+        valueSum = 0;
+        livingSum = 0;
+        transportSum = 0;
+        infraSum = 0;
+        eduSum = 0;
+
+        for(var i = 0 ; i < itemNum ; i++){                
+          var aptName = aptData.data[i]["아파트명"]
+          var apt_m = aptData.data[i]["전용면적(m2)"]
+          var apt_p = aptData.data[i]["전용면적(평)"]
+          var aptAddress = aptData.data[i]["도로명주소"]
+          var aptValue = Math.round( aptData.data[i]["가치 총점"] * 100 ) / 100;
+          var rank = aptData.data[i]["rank"].toFixed()
+
+          valueSum += aptData.data[i]["가치 총점"]
+          livingSum += aptData.data[i]["주거총점"]
+          transportSum += aptData.data[i]["교통총점"]
+          infraSum += aptData.data[i]["인프라총점"]
+          eduSum += aptData.data[i]["학군총점"]
+
+          //console.log(valueSum)
+
+          var addon_html = "<div class='listBox' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showDetail(" + i + ")'>";
+          addon_html += "<div class='rank'>" + rank + "위</div>";
+          addon_html += "<div class='content'>";
+          //addon_html += "<div class='apt_name'>" + aptName + " " + apt_p + "(" + apt_m + ")</div>";
+          addon_html += "<div class='apt_name'>" + aptName + "</div>";
+          addon_html += "<div class='apt_address'>" + aptAddress + "</div>";
+          addon_html += "</div>";
+          addon_html += "<div class='value_score'>" + ( Math.round( aptValue * 100 ) / 100 ).toFixed(2) + "점</div>"
+          addon_html += "</div>"
+
+          $('#dataList').append(addon_html);
+        }
+    })
+  }
+
+  function showDetail(index){
+    titleHtml = "";
+    detailHtml = "";
+    footerHtml = "";
+    var aptRank = aptData.data[index]["rank"] + "/" + aptData.data[itemNum-1]["rank"] + "위"
+    var aptName = aptData.data[index]["아파트명"]
+    var apt_m = aptData.data[index]["전용면적(m2)"]
+    var apt_p = aptData.data[index]["전용면적(평)"]
+    var aptAddress = aptData.data[index]["도로명주소"]
+    var aptValue = Math.round( aptData.data[index]["가치 총점"] * 100 ) / 100;
+    var aptDuration = aptData.data[index]["준공년차"]
+    var aptYear = ""
+    if(aptDuration >= 30){
+      aptYear = aptData.data[index]["준공년월"] + " (" + aptDuration + "년차, 재건축 대상)"
+    }else{
+      aptYear = aptData.data[index]["준공년월"] + " (" + aptDuration + "년차)"
+    }    
+
+    var nearestStation = aptData.data[index]["가까운역이름"] + "역" + "(" + ( Math.round( aptData.data[index]["가까운역거리"] * 100 ) / 100 ).toFixed()  + "m)"
+    var stationArea = aptData.data[index]["역세권여부"]
+    var stationPoint_30m = aptData.data[index]["30분이내주요거점역"] + "개"
+    var stationPoint_1h = aptData.data[index]["1시간이내주요거점역"] + "개"
+    var departmentStore_3km = aptData.data[index]["3km이내백화점수"] + "개"
+    var OutletMall_5km = aptData.data[index]["5km이내아울렛몰수"] + "개"
+    var bigMart_1km = aptData.data[index]["1km이내대형먀트수"] + "개"
+    var bank_500m = aptData.data[index]["500m이내은행수"] + "개"
+    var hospital_500m = aptData.data[index]["500m이내병원수"] + "개"
+    var bigHospital_5km = aptData.data[index]["5km이내대형병원수"] + "개"
+    var park_500m = aptData.data[index]["500m이내공원수"] + "개"
+    var harmful_3km = aptData.data[index]["3km이내혐오시설수"] + "개"
+    var pSchool_edu = aptData.data[index]["초등학교학업성취도"]
+    var mSchool_edu = aptData.data[index]["중학교학업성취도"] + "%"
+    var livingScore = ( Math.round( aptData.data[index]["주거총점"] * 100 ) / 100 ).toFixed(2)
+    var transportScore = ( Math.round( aptData.data[index]["교통총점"] * 100 ) / 100 ).toFixed(2)    
+    var infraScore = ( Math.round( aptData.data[index]["인프라총점"] * 100 ) / 100 ).toFixed(2)
+    var eduScore = ( Math.round( aptData.data[index]["학군총점"] * 100 ) / 100 ).toFixed(2)
+    var area_info = aptData.data[index]["area_info"]
+    var house_num = aptData.data[index]["세대수"]
+
+    var searchCode = aptData.data[index]["검색코드"]
+    var coord_y = aptData.data[index]["Y"]
+    var coord_x = aptData.data[index]["X"]    
+
+    var floor_rate = ""    
+    if(aptData.data[index]["용적률"] == "0"){
+      floor_rate = "--%"
+    }
+    else{
+      floor_rate = aptData.data[index]["용적률"] + "%"
+    }
+
+    var cover_rate = ""
+    if(aptData.data[index]["건폐율"] == "0"){
+      cover_rate = "--%"
+    }
+    else{
+      cover_rate = aptData.data[index]["건폐율"] + "%"
+    }
+
+    var populationScore = Math.round( aptData.data[index]["인구총점"] * 100 ) / 100
+    var jobScore = Math.round( aptData.data[index]["일자리총점"] * 100 ) / 100
+
+    //Title    
+    //titleHtml += "<div class='popupTitle'>" + aptName + " " + apt_p + "(" + apt_m + ")</div>";    
+    titleHtml += "<div class='popupTitle'>" + aptName + "</div>";    
+    titleHtml += "<div class='popupSubtitle'>" + aptYear + "</div>";
+    titleHtml += "<div class='popupSubtitle'>" + aptAddress + "</div>";    
+
+    //총점,순위
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popRank'><i class='fas fa-trophy'></i> " + aptRank + "</div>";
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";    
+    detailHtml += "<div class='graph' style='height: 200px'> <canvas id='valueChart'></canvas></div>"
+    detailHtml += "<div class='comment'>(지역구의 모든 단지에 대해 100점으로 환산한 상대 점수 입니다.)</div>";
+    detailHtml += "</div></div>"
+
+    //주거
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-home'></i>&nbsp&nbsp주거</div>"    
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popLiving'>"
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='livingChart'></canvas></div>"
+    detailHtml += "<div class='popTable'>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "세대수" + "</div>" + "<div class='popResult'>" + house_num + "세대</div></div>";
+    if(aptDuration >= 30){
+      detailHtml += "<div class='popSubTable'><div class='popContent'>" + "용적률" + "</div>" + "<div class='popResult'>" + floor_rate + "</div></div>";
+      detailHtml += "<div class='popSubTable'><div class='popContent'>" + "건폐율" + "</div>" + "<div class='popResult'>" + cover_rate + "</div></div>";
+    }
+    detailHtml += "<div id='popSubLiving'><div class='popContent'>" + "면적 구성" + "<br>" + "<span class='popResult'>" + area_info + "</span></div></div>";
+    detailHtml += "</div></div></div></div>"   
+    avgLivingScore = Math.round( livingSum/itemNum * 100 ) / 100    
+
+    if(isNaN(transportScore) == false){
+      //교통
+      detailHtml += "<div class='card'>";
+      detailHtml += "<div class='card-header'>";
+      detailHtml += "<div class='popTitle'><i class='fas fa-bus'></i>&nbsp&nbsp교통</div>"
+      detailHtml += "</div>";
+      detailHtml += "<div class='card-body'>";
+      detailHtml += "<div id='popTransport'>"
+      detailHtml += "<div class='graph' style='height: 120px'> <canvas id='transportChart'></canvas></div>"
+      detailHtml += "<div class='popTable'>"
+      detailHtml += "<div class='popSubTable' id='popSubStation'><div class='popContent'>" + "가장 가까운 역" + "</div>" + "<div class='popResult'>" + nearestStation + "</div></div>";
+      detailHtml += "<div class='popSubTable'><div class='popContent'>" + "30분 이내 도착 가능 주요역" + "</div>" + "<div class='popResult'>" + stationPoint_30m + "</div></div>";
+      detailHtml += "<div class='popSubTable'><div class='popContent'>" + "1시간 이내 도착 가능 주요역" + "</div>" + "<div class='popResult'>" + stationPoint_1h + "</div></div>";    
+      detailHtml += "</div></div></div></div>"
+      avgTransportScore = ( Math.round( transportSum/itemNum * 100 ) / 100 ).toFixed(2)
+    }
+
+    //인프라
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-hospital-user'></i>&nbsp&nbsp인프라</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popInfra'>"    
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='infraChart'></canvas></div>"
+    detailHtml += "<div class='popTable'>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "3km 이내 백화점" + "</div>" + "<div class='popResult'>" + departmentStore_3km + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "5km 이내 아울렛/몰" + "</div>" + "<div class='popResult'>" + OutletMall_5km + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "1km 이내 대형마트" + "</div>" + "<div class='popResult'>" + bigMart_1km + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "500m 이내 은행" + "</div>" + "<div class='popResult'>" + bank_500m + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "500m 이내 병원" + "</div>" + "<div class='popResult'>" + bank_500m + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "5km 이내 대형병원" + "</div>" + "<div class='popResult'>" + bigHospital_5km + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "500m 이내 공원" + "</div>" + "<div class='popResult'>" + park_500m + "</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "3km 이내 혐오시설" + "</div>" + "<div class='popResult'>" + harmful_3km + "</div></div>";
+    detailHtml += "</div></div></div></div>"
+    avgInfraScore = ( Math.round( infraSum/itemNum * 100 ) / 100 ).toFixed(2)
+
+    //학군
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-graduation-cap'></i>&nbsp&nbsp학군</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popEducation'>"    
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='eduChart'></canvas></div>"
+    detailHtml += "<div class='popTable'>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "초등학교 학생증감점수" + "</div>" + "<div class='popResult'>" + ( Math.round( pSchool_edu * 100 ) / 100 ).toFixed(2) + "점</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "중학교 학업성취도" + "</div>" + "<div class='popResult'>" + mSchool_edu + "</div></div>";
+    detailHtml += "</div></div></div></div>"
+    avgEduScore = ( Math.round( eduSum/itemNum * 100 ) / 100 ).toFixed(2)
+    
+    //지역구    
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-layer-group'></i>&nbsp&nbsp" + regionName + "</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popEducation'>"    
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='regionChart'></canvas></div>"        
+    detailHtml += "</div></div></div>"
+
+    //Footer에 네이버 부동산 버튼
+    footerHtml += "<div class='modal-footer'>"
+    footerHtml += "<div></div>"    
+    footerHtml += "<div><button type='button' class='goLink' onclick='openNaver(" + searchCode + ")'>네이버 부동산에서 보기</button></div>"
+    footerHtml += "<div></div>"
+    footerHtml += "</div>"
+    
+    $('#exampleModalLabel').html(titleHtml);
+    $('#aptDetail').html(detailHtml);
+    $('#footer').html(footerHtml);
+    
+    drawChart(aptValue, livingScore, transportScore, infraScore, eduScore)
+    drawSubChart(livingScore, avgLivingScore, "주거총점", "지역평균", "#ff3d38", "#9f9f9f",  "livingChart")
+    if(isNaN(transportScore) == false){
+      drawSubChart(transportScore, avgTransportScore, "교통총점", "지역평균", "#ff3d38", "#9f9f9f", "transportChart")
+    }
+    drawSubChart(infraScore, avgInfraScore, "인프라총점", "지역평균", "#ff3d38", "#9f9f9f", "infraChart")
+    drawSubChart(eduScore, avgEduScore, "학군총점", "지역평균", "#ff3d38", "#9f9f9f", "eduChart")
+    drawSubChart(eduScore, avgEduScore, "인구총점", "일자리총점", "#ff3d38", "#ff3d38", "regionChart")
+  }
+
+  function updateRegionTable(month){
+    $('html').scrollTop(0)
+    url = "https://anitooni.github.io/APT-Rank/" + month + "/1000000000_Korea.json"    
+    $('#dataList').html("");
+
+    $.getJSON(url, function(json) {
+        //console.log(json);
+        regData = json;
+        itemNum = json.data.length;
+        regValueSum = 0;
+        regSupplySum = 0;
+        regPopSum = 0;
+        regJobSum = 0;
+
+        for(var i = 0 ; i < itemNum ; i++){                
+          var regName = regData.data[i]["시도"]
+          
+          var regSuplyLevel = regData.data[i]["공급수준"]
+          var regPopChange = regData.data[i]["인구증감"]
+          var regIncome = regData.data[i]["소득수준"]
+          var regValue = Math.round( regData.data[i]["가치 총점"] * 100 ) / 100;
+          var regRank = regData.data[i]["rank"]
+          var regJob = regData.data[i]["일자리"]
+
+          regValueSum += regData.data[i]["가치 총점"]
+          regSupplySum += regData.data[i]["지역구공급총점"]
+          regPopSum += regData.data[i]["인구총점"]
+          regJobSum += regData.data[i]["일자리총점"]          
+
+          var addon_html = "<div class='listBox' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showRegionDetail(" + i + ")'>";
+          addon_html += "<div class='rank'>" + regRank + "위</div>";
+          addon_html += "<div class='content'>";          
+          addon_html += "<div class='apt_name'>" + regName + "</div>";
+          addon_html += "<div class='reg_subTable'>";
+
+          addon_html += "<div class='apt_address'>아파트 공급량 <span style='font-weight:900; color:#0f0f0f'>" + regSuplyLevel + "</span></div>";
+
+          var upDown = ""
+          if (regPopChange < 0){
+            upDown = "감소"            
+          }
+          else{
+            upDown = "증가"            
+          }
+          addon_html += "<div class='apt_address'>인구 " + (Math.abs(regPopChange)).toLocaleString() + "명 " + upDown + "</div>";
+          addon_html += "<div class='apt_address'>일자리 " + regJob.toLocaleString() + "개</div>";
+          addon_html += "<div class='apt_address'>소득 " + regIncome.toLocaleString() + "원</div>";          
+          addon_html += "</div></div>";
+          addon_html += "<div class='value_score'>" + ( Math.round( regValue * 100 ) / 100 ).toFixed(2) + "점</div>"
+          addon_html += "</div>"
+
+          $('#dataList').append(addon_html);
+        }
+    })
+  }
+
+  function showRegionDetail(index){
+    titleHtml = "";
+    detailHtml = "";
+    footerHtml = "";
+    var regRank = regData.data[index]["rank"] + "/" + regData.data[itemNum-1]["rank"] + "위"
+    var regName = regData.data[index]["시도"]
+    var regValue = ( Math.round(regData.data[index]["가치 총점"] * 100) / 100).toFixed(2)
+
+    var regSupplyAll = regData.data[index]["총물량"]
+    var regSupplyProper = regData.data[index]["적정입주물량"]
+    var regSupplyUpDown = Math.abs(regData.data[index]["과부족수"])
+    var regSupplyLevel = regData.data[index]["공급수준"]    
+    var regSupplyScore = ( Math.round(regData.data[index]["지역구공급총점"] * 100) / 100).toFixed(2)
+
+    var regPop = regData.data[index]["인구수"]
+    var regPopUpDown = regData.data[index]["인구증감"]
+    var regPopScore = ( Math.round(regData.data[index]["인구총점"] * 100) / 100).toFixed(2)
+
+    var regJob = regData.data[index]["일자리"]
+    var regIncome = regData.data[index]["소득수준"]
+    var regJobScore = ( Math.round(regData.data[index]["일자리총점"] * 100) / 100).toFixed(2)
+    linked = regData.data[index]["연결명"]
+
+    //Title    
+    //titleHtml += "<div class='popupTitle'>" + aptName + " " + apt_p + "(" + apt_m + ")</div>";    
+    titleHtml += "<div class='popupTitle'>" + regName + "</div>";    
+
+    //총점,순위
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popRank'><i class='fas fa-trophy'></i> " + regRank + "</div>";
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";    
+    detailHtml += "<div class='graph' style='height: 200px'> <canvas id='valueChart'></canvas></div>"
+    detailHtml += "<div class='comment'>(전국 모든 시군구에 대해 100점으로 환산한 상대 점수 입니다.)</div>";
+    detailHtml += "</div></div>"
+
+    //물량
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-building'></i>&nbsp&nbsp공급량</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popLiving'>"    
+    detailHtml += "<div class='popTable'>"
+    //detailHtml += "<div class='graph' style='height: 120px'> <canvas id='supplyChart'></canvas></div>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "총 공급량" + "</div>" + "<div class='popResult'>" + ( Math.round(regSupplyAll) ).toLocaleString() + "세대</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "적정 입주량" + "</div>" + "<div class='popResult'>" + ( Math.round(regSupplyProper) ).toLocaleString() + "세대</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "과부족" + "</div>" + "<div class='popResult'>" + ( Math.round(regSupplyUpDown) ).toLocaleString() + "세대 " + regSupplyLevel + "</div></div>";    
+    detailHtml += "</div></div></div></div>"
+    avgSupplyScore = ( Math.round( regSupplySum/itemNum * 100 ) / 100 ).toFixed(2)
+
+    //인구
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-user-friends'></i>&nbsp&nbsp인구</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popInfra'>"    
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='popChart'></canvas></div>"
+    detailHtml += "<div class='popTable'>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "인구수" + "</div>" + "<div class='popResult'>" + regPop.toLocaleString() + "명</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "인구증가" + "</div>" + "<div class='popResult'>" + ( Math.round(regPopUpDown) ).toLocaleString() + "명</div></div>";    
+    detailHtml += "</div></div></div></div>"
+    avgPopScore = ( Math.round( regPopSum/itemNum * 100 ) / 100 ).toFixed(2)
+
+    //일자리
+    detailHtml += "<div class='card'>";
+    detailHtml += "<div class='card-header'>";
+    detailHtml += "<div class='popTitle'><i class='fas fa-user-md'></i></i>&nbsp&nbsp일자리</div>"
+    detailHtml += "</div>";
+    detailHtml += "<div class='card-body'>";
+    detailHtml += "<div id='popEducation'>"    
+    detailHtml += "<div class='graph' style='height: 120px'> <canvas id='jobChart'></canvas></div>"
+    detailHtml += "<div class='popTable'>"
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "일자리수" + "</div>" + "<div class='popResult'>" + regJob.toLocaleString() + "개</div></div>";
+    detailHtml += "<div class='popSubTable'><div class='popContent'>" + "평균소득" + "</div>" + "<div class='popResult'>" + regIncome.toLocaleString() + "원</div></div>";
+    detailHtml += "</div></div></div></div>"
+    avgJobScore = ( Math.round( regJobSum/itemNum * 100 ) / 100 ).toFixed(2)    
+
+    //Footer에 아파트보기 버튼    
+    var shortName = regName.substring(regName.search(' '), regName.length)
+    var rName = regName.substring(0, regName.search(' '))    
+    for(var i = 0 ; i < regions.length; i++){      
+      if(regions[i][0] == rName){
+        regionValue = regions[i][1]                
+      }
+      else{}
+    }
+
+    footerHtml += "<div class='modal-footer'>"
+    footerHtml += "<div></div>"    
+    footerHtml += "<div><button type='button' class='goApt' data-dismiss='modal' onClick='show_apt(selectedMonth, linked, regionValue)'>" + shortName + " 아파트 보기</button></div>"                  
+    footerHtml += "<div></div>"
+    footerHtml += "</div>"
+    
+    $('#exampleModalLabel').html(titleHtml);
+    $('#aptDetail').html(detailHtml);
+    $('#footer').html(footerHtml);
+ 
+    drawChart(regValue, regSupplyScore, regPopScore, regJobScore, "region")    
+    //drawSubChart(regSupplyScore, avgSupplyScore, "공급량총점", "전국평균", "#ff3d38", "#9f9f9f", "supplyChart")
+    drawSubChart(regPopScore, avgPopScore, "인구총점", "전국평균", "#ff3d38", "#9f9f9f", "popChart")
+    drawSubChart(regJobScore, avgJobScore, "일자리총점", "전국평균", "#ff3d38", "#9f9f9f", "jobChart")
+  }
+
+  function show_apt(month, filename, sido){    
+    $("#sido").val(sido).prop("selected", true);    
+    optionChange(filename)    
+    updateTable(month, filename)
+  }
+
+  function openNaver(code, y, x){
+    nURL = "https://new.land.naver.com/complexes/" + code
+    window.open(nURL)
+  }
+  function showNotice(){
+    var titleHtml = "<div class='popupTitle'> 아파트 랭크에서 알려드립니다 </div>";
+    var detailHtml = "<div class='notice'> 안녕하세요. 아파트랭크입니다.</div>";
+    detailHtml += "<div class='notice'> 종합적인 아파트 정보를 제공하는 서비스가 많음에도 불구하고, 우리 지역의 진짜 입지 좋은 곳을 한 번에 판단하기가 너무 어려워 아파트 랭크 서비스를 만들었습니다. </div>";
+    detailHtml += "<div class='notice'> 개개인이 생각하는 아파트의 중요한 요소들이 있겠지만, AI를 통해 많은 정보를 종합하여 선정된 순서를 보여드리고자 했으니 유용하게 사용하시기 바래봅니다! </div>";
+    detailHtml += "<div class='notice'> 지속적인 업데이트를 통해 더 좋은 서비스를 제공하도록 노력하겠습니다. </div>";
+    detailHtml += "<div class='notice'> 서비스 사용에 대한 중요한 공지사항을 꼭 확인해 주세요!</div>";
+    detailHtml += "<hr>";
+    detailHtml += "<ul>";
+    detailHtml += "<li><div class='notice'> 아파트 랭크의 점수는 투자지표가 아님을 말씀드립니다. 투자 판단에 대한 모든 책임은 투자자 본인에게 있습니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 모든 점수는 환경 요소를 분석한 AI가 선정하며, 일체의 임의적 조작을 가하지 않습니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 점수는 해당 지역구의 상대 점수이며, 다른 지역구의 동일 점수와 같은 가치를 나타내지 않습니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 단지의 정보는 네이버 부동산 정보를 참조합니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 100세대 이하의 단지는 통계에서 제외됩니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 수도권 교통 정보는 지하철역 위치 정보를 기반으로 산정됩니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 인프라 정보는 각 백화점/마트 홈페이지, 은행연합회, 자원순환정보시스템, 공공데이터 포탈의 정보를 기반으로 산정됩니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 학군 정보는 교육통계서비스 정보를 기반으로 산정됩니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 지역구 정보는 공공데이터포탈 정보를 기반으로 산정됩니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 모든 정보는 월 1회 업데이트 예정이며, 각 기반 정보의 업데이트 시점에 따라 변동 가능성이 있습니다.</div></li>";
+    detailHtml += "<li><div class='notice'> 문의사항, 오류수정, 개선제안은 이메일을 통해 요청해 주세요.</div></li>";
+    detailHtml += "<li><div class='notice'> <a href='mailto:aptranking@gmail.com'>aptranking@gmail.com</a></div></li>";
+    detailHtml += "</ul>";
+    
+    $('#exampleModalLabel').html(titleHtml);
+    $('#aptDetail').html(detailHtml);
+    $('#footer').html("");
+  }
+
+  function drawChart(aptValue, livingScore, transportScore, infraScore, eduScore){
+    var label = ["총점", "주거", "교통", "인프라", "교육"]
+    var data = [aptValue, livingScore, transportScore, infraScore, eduScore]      
+    var color = 'white'
+    var align = 'start'
+
+    if(isNaN(transportScore)){
+      label = ["총점", "주거", "인프라", "교육"]
+      data = [aptValue, livingScore, infraScore, eduScore]        
+    }
+    if(eduScore == "region"){
+      label = ["총점", "공급필요", "인구수", "일자리수"]
+      data = [aptValue, livingScore, transportScore, infraScore]        
+    }
+    if(aptValue < 85 && livingScore < 85 && transportScore < 85 && infraScore < 85){
+      color = 'black'
+      align = 'end'
+    }
+
+    var ctx = document.getElementById("valueChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      plugins:[ChartDataLabels],
+      data: {          
+        labels: label,
+        datasets: [{                
+          data: data,
+          backgroundColor: [
+              '#ff3d38',
+              '#f97f95',
+              '#f97f95',
+              '#f97f95',
+              '#f97f95',
+          ],
+          borderColor: [
+              'rgba(255,99,132, 0)',
+              'rgba(54, 162, 235, 0)',
+          ],                
+          barThickness: 17,            
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        maintainAspectRatio: false,          
+        plugins:{
+          legend:{
+            display: false
+          },            
+          datalabels: {
+            display: true,
+            color: color,
+            align: align,
+            anchor: 'end',              
+            offset: 6,
+            textAlign: 'center',
+            font: {
+              weight: 'bold'
+            },              
+          },                      
+        },
+        animation: {            
+          x:{
+            from: 100
+          }
+        },
+        scales: {
+          x:{
+            type: 'linear',
+            min: 0,
+            max: 100,
+          },
+          myScale: {              
+            position: 'left', // `axis` is determined by the position as `'y'`
+          }
+        }          
+      }
+  });
+}
+
+function drawSubChart(score, avgScore, label1, label2, color1, color2, className){
+    var ctx = document.getElementById(className).getContext('2d');
+    var color = 'white'
+    var align = 'start'
+
+    if(score < 85 && avgScore < 85){
+      color = 'black'
+      align = 'end'      
+    }
+
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      plugins:[ChartDataLabels],
+      data: {          
+        labels: [label1, label2],
+        datasets: [{                
+          data: [score, avgScore],
+          backgroundColor: [
+              color1,
+              color2,
+          ],               
+          barThickness: 20,            
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        maintainAspectRatio: false,          
+        plugins:{
+          legend:{
+            display: false
+          },            
+          datalabels: {
+            display: true,
+            color: color,
+            align: align,
+            anchor: 'end',              
+            offset: 6,
+            textAlign: 'center',
+            font: {
+              weight: 'bold'
+            },              
+          },                      
+        },
+        animation: {            
+          x:{
+            from: 100
+          }
+        },
+        scales: {
+          x:{
+            type: 'linear',
+            min: 0,
+            max: 100,
+          },
+          myScale: {              
+            position: 'left', // `axis` is determined by the position as `'y'`
+          }
+        }          
+      }
+  });
+}     
+  
+          
+</script>
+</html>

@@ -1,0 +1,984 @@
+  body{
+    -ms-overflow-style: none;
+    background-color: #ddd;
+  }
+
+  #container{    
+    display: grid;
+    grid-template-columns: 1fr 500px 1300px 1fr;
+    /*justify-content: center;*/
+    height: 900px;
+    /*overflow: auto;*/
+  }
+
+  #centerBox{
+    display: grid;    
+    grid-template-columns: 500px 1300px;
+    height: 100%;
+    margin: 0 auto;
+    /*justify-content: center;*/
+  }
+
+  #standatd_interest{
+    display:grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 160px;
+    height: 50px;    
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.8em;
+    line-height: 1.8em;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: #162235;
+    color: white;
+  }
+
+  #svg_map .TEXT{
+    font-size: 1.3em;    
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  #footer_area{
+    display: grid;
+    grid-template-columns: 1fr 1800px 1fr;
+    height: 10px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    left:0
+  }
+  #footer_text{
+    justify-items: center;
+    text-align: right;
+    padding-right: 20px;
+    background: #162235;
+    color:white;    
+  }
+
+  #map_area{
+    display: block;
+    position: relative;    
+    top: 5px;
+    margin-left: 5px;
+    width: 500px;
+    height: 890px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  #legend_area{
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr 1fr 1fr 1fr 1fr 70px;
+    height: 40px;
+  }
+  .ledend_color{
+    opacity: 0.6;
+    height: 10px;
+  }
+  .ledend_text{
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: 600;
+    height: 15px;
+  }
+  #svg_map{
+    display: inline-block;
+    width: 500px;
+    height: 800px;  
+  }
+
+  #titleBar_theme{   
+    position: relative;    
+    display: grid;
+    grid-template-columns: 1fr 900px 900px 1fr;
+    width: 100%;    
+    height: 50px;    
+    line-height: 50px;    
+    z-index: 500;
+  }
+  #title{
+    display: inline-block;    
+    font-family: Roboto;
+    text-align: left;
+    padding-left: 20px;
+    color: white;
+    background-color: #162235;
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+  #themeLogo{
+    font-weight: 400;
+    display:inline-flex;      
+    border-radius: 5px;
+    border: 2px solid white;
+    padding: 2px 5px 2px 5px;
+    margin-left: 5px;
+    line-height: 18px;      
+  }
+  .translate-middle{
+    transform: translate(-20%, 40%) !important;    
+  }  
+  #filterPyeong{
+    width: 100%;
+  }
+  #selectPyeong{
+    margin-top: 5px;
+    width: 95%;
+    height: 2em;
+    font-size: 0.8em;
+    padding-left: 5px;
+    border: none;
+    background-color: white;
+  }
+  .btn-outline-danger{
+    width: 95%;
+    background-color: white;
+    color: #ff3849;    
+    border-color: #ff3849;
+    border-radius: 2em;    
+    padding: 4px 2px 4px 2px;
+  }
+  .btn-outline-danger:hover, .btn-outline-danger:active, .btn-outline-danger:checked{    
+    background-color: #ff3849 !important;
+    color: white !important;        
+  }
+  .btn-check:checked+.btn-outline-danger{
+    background-color: #ff3849 !important;        
+  }
+  .btn-check:disabled+.btn, .btn-check[disabled]+.btn{    
+    opacity: 0.3 !important;    
+  }
+
+  #dataWrapper{
+    position: relative;
+    left: 20px;
+    width: 100%;
+    height: 820px;    
+    overflow: auto;    
+    padding-bottom: 5px;
+    padding-right: 0px;
+  }
+
+  #dataList{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 0.5em;
+    column-gap: 0.8em;    
+    width: 98%;
+    height: 98%;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-right: 15px;
+  }
+  .region_info{
+    display:grid;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;    
+    box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+  }
+  .region_info:hover{
+    box-shadow: rgba(0, 177, 204, 0.3) 0px 0px 0px 3px;
+  }
+  .table_top{
+    background-color: #ddd;
+  }
+  .region_table1{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 0.80rem;
+    text-align: center;
+    line-height: 1.4rem;
+  }
+  .region_table2{
+    display:grid;    
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.80rem;    
+    text-align: center;    
+    line-height: 1.4rem;  
+  }
+  .region_status{
+    display: grid;
+    border-bottom: 1px solid #aaa;    
+    grid-template-columns: 1fr 1fr 15px 20px 15px 20px 15px 20px 15px 20px 15px 20px 15px 20px;
+  }
+  .subregion_traffic{
+    text-align: center;
+    font-size: 0.8em;
+    line-height: 2em;
+  }
+  .subregion_num{
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: 600;
+    padding-left: 1px;
+    line-height: 2em;
+  }
+
+  .region_name{
+    font-size: 0.95em;
+    font-weight: 600;    
+    justify-items: baseline;
+    padding-left: 3px;
+    line-height: 1.7rem;
+  }
+
+  .subRegion_info{
+    width: 100%;
+    height: 98%;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+  }
+  .subRegion_py_price_table{
+    display:grid;    
+    grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;    
+    line-height: 1.8rem;
+  }
+  .subRegion_year_table{
+    display:grid;    
+    grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;    
+    line-height: 1.8rem;
+  }
+  .subRegion_regu_table{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;    
+    line-height: 1.8rem;
+  }
+  .subRegion_pop_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_pop_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_price_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_price_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_rent_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_rent_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_supply_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_supply_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_deal_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_deal_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_non_sales_table1{
+    display:grid;    
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-bottom: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  .subRegion_non_sales_table2{
+    display:grid;    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8rem;    
+    text-align: center;
+    border-top: 1px solid #ddd;    
+    line-height: 1.5rem;
+  }
+  #region_summary{
+    width: 100%;
+    font-size: 0.95rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: 600;
+    text-align: left;    
+  }
+  #region_eval_table{
+    width: 100%;
+    border-radius: 5px;
+    background: #eee;
+    text-align: center;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+    margin-bottom: 0.5em;
+  }
+  .subRegion_title{
+    display:grid;
+    grid-template-columns: 1fr 30px;
+  }
+  .subRegion_name{
+    font-size: 1.15em;
+    font-weight: 600;
+    border-bottom: 1px solid #aaa;  
+    padding-left: 8px;    
+    height: 2em;
+    line-height: 2em;
+  }
+  .subRegion_qna{
+    font-size: 1.15em;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid #aaa;      
+    height: 2em;
+    line-height: 2em;
+  }
+  .subRegion_qna:hover{
+    color: #133eb3;    
+  }
+  #subRegion_line1{
+    display:grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 0.5em;
+  }
+  #region_eval_table{
+    display:grid;
+    grid-template-columns: 100px 1fr;
+    width: 100%;
+  }
+  #subRegion_line2{
+    display:grid;
+    grid-template-columns: 1.2fr 1.5fr 1.2fr;
+    column-gap: 0.9em; 
+    width: 100%;
+    height: 10%;
+    margin-bottom: 1.5em;
+  }
+
+  #subRegion_line3{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;    
+    column-gap: 0.5em; 
+    width: 100%;
+    height: 78%;
+  }
+
+  .graph{
+    width: 100%;
+    height: 150px;    
+    padding-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .listBox{
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  .optionSelect{
+    height: .3em;
+    text-align: center;    
+    font-weight: 600;    
+    width: 100%;    
+    border: 0;
+    border-radius: 1em;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .optionSelect:focus{
+    outline: 0;
+    background: #fff
+  }
+
+  .listBox:active{
+    background-color: #ffdfde;
+  }
+  .value_score{
+    text-align: right;
+    justify-content: center;
+    padding-right: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  .rank_content{
+    display: grid;    
+  }
+  .rank{
+    text-align: center;
+    font-size: 0.85em;
+  }
+  .rankup{
+    text-align: center;
+    font-size: 0.6em;
+    color:#fe4040
+  }
+  .rankdown{
+    text-align: center;
+    font-size: 0.6em;
+    color:blue
+  }
+  .ranksame{
+    text-align: center;
+    font-size: 0.6em;    
+  }
+  .rankGraphTitle{
+    height: 2em;
+    font-size: 0.75em;
+    text-align: center;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    background: #f7f7f7;
+  }  
+  .apt_address{
+    font-size: 0.7em;
+    color: gray;
+  }  
+  .regionPopUp, .regionPopDown{
+    font-size: 0.8em;
+    color: gray;
+  }  
+  .apt_name{
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+  .aptYear{
+    font-size: 0.8em;
+    color: gray
+  }
+  .apt_info{
+    font-size: 0.7em;
+    color:rgb(85, 85, 85);
+  }
+  .themePoint{
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #162235;
+  }
+
+  #contentBox{
+    position: relative;
+    background-color: #fff;    
+    top: 5px;
+    left: 20px;
+    width: 98%;
+    height: 890px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  #themeSelections{        
+    display: grid;
+    position: relative;
+    grid-template-columns: 200px 350px 1.5fr 1fr;
+    height: 60px;
+    width: 98%;
+    padding-left: 25px;
+    align-items: center;
+  }
+  #update_info{
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  #go_to_aptrank{
+    display: grid;    
+    grid-template-columns: 40px 1fr 40px;    
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    padding: 3px 5px 3px 5px;    
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  #go_to_aptrank:hover{
+    background: #fe404015;    
+  }
+  #go_to_aptrank:active{
+    background: #fe404028;    
+  }
+
+  #linkToAptrank{
+    display: grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    align-content: center;
+    justify-content: center;
+    padding-top: 1px;
+    padding-bottom: 1px;    
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2em;
+    line-height: 2em;
+    background-color: #eeeeee;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px -5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    text-align: center;
+  }
+
+  #tab1, #tab2, #tab3{
+    font-size: 0.8em;
+    font-weight: 600;
+    border-top: 2px solid #fe4040;    
+    color: gray;
+  }
+  #tab1:active, #tab2:active, #tab3:active{            
+    color: #fe4040;
+  }  
+
+  #arrow{
+    font-size: 1.1em;
+  }
+
+  #sido, #gungu, #month, #theme{
+    width: 80%;    
+    font-size: 1.7em;
+    font-weight: 600;
+    color: #162235;
+    margin-right: 2px;
+    background: white;
+    border: none;
+    border-bottom: 1px solid #ddd
+  }  
+  #sido:focus, #gungu:focus, #month:focus, #theme:focus{
+    outline: 0;    
+  }
+  #sido option, #gungu option{
+    font-size: 1em;
+    font-weight: 600;    
+  }
+
+  #sido_selection{
+    text-align: left;
+    padding-left: 10px;
+  }
+  #gungu_selection{
+    text-align: left;
+  }
+  #month_selection{
+    text-align: right;
+    padding-right: 10px;
+  }
+  #theme_selection{
+    text-align: right;
+    padding-right: 10px;
+  }
+  #exampleModal, .modal-backdrop{    
+    width: 1920px;
+    height: 1080px;    
+  }
+
+  .modal-dialog-scrollable{
+    max-width: 800px;
+    padding-bottom: 50px;    
+  }
+
+  .modal-body{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    height: auto;
+  }
+  .popRank{
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 600;    
+  }
+  .popupTitle{    
+    font-weight: 900;    
+  }
+  .popupSubtitle{
+    font-size: 0.7em;
+    color: gray;
+  }
+  .popSubTable{
+    display: grid;
+    height: 1.8em;
+    grid-template-columns: 1.5fr 1fr;    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px rgb(216, 216, 216);
+  }
+  .table-striped{
+    max-height: 200px;
+  }
+  .popLivingTable{
+    display: grid;
+    height: 1.4em;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    margin-top: 2px;
+    margin-bottom: 2px;    
+    border-bottom: solid 1px rgb(216, 216, 216);
+  }  
+  #popSubStation{
+    display: grid;    
+    grid-template-columns: 1fr 2fr;
+  }
+  .stationList{
+    display: grid;
+    grid-template-columns: 0.1fr 1fr;
+    align-content:flex-end;
+    justify-content:end;
+    font-size: 0.75em;    
+    text-align: right;
+    color: gray;
+    margin-bottom: 1.5em;
+    word-wrap: break-word;
+    word-break: keep-all;    
+  }
+  #popSubLiving{
+    display: block;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px rgb(216, 216, 216);    
+  }
+  #popSubResult{
+    text-align: left;
+  }
+  #popLiving{
+    display: block;    
+  }
+  .popTitle{
+    font-weight: 600;
+  }
+  .popContent{
+    font-size: 0.9em;
+    text-align: left;
+  }
+  .popLivingContent{
+    font-size: 0.9em;    
+  }
+  .popTable{
+    display:grid;
+  }
+  .popResult{    
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: right;
+  }
+  .card{
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+  #help, #rearrange, #tripGuide{
+    font-size: 1.5em;
+    color: white;
+    text-align: right;
+    padding-right: 15px;
+  }
+  #search, #sort{
+    font-size: 1.5em;
+    color: white;
+    text-align: left;
+    padding-left: 15px;
+  }  
+  .settingArea{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2.8em 2.8em;  
+    text-align: center;    
+    padding-top: 15px;
+  }
+  .rangeArea{
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;    
+    height: 12em;
+    text-align: center;    
+  }
+  input[type=range]::-webkit-slider-thumb{
+    height: 1.3em;
+    width: 1.3em;
+    margin-top: -0.4em;
+    background-color: #ff3849;
+  }
+  input[type=range]::-webkit-slider-thumb:hover, input[type=range]::-webkit-slider-thumb:active{
+    background-color: #ffa4ac;
+  }
+  .rangeValue{
+    text-align: right;
+    padding-right: 5px;
+  }
+  .rangeGuide{
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    text-align: right;
+  }
+  #percentWarning{
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #ff3849;
+    margin-right: 10px;
+  }
+
+  #iconSearch, #iconSort, #iconRearrange{
+    font-size: 1.5em;
+    color: white;
+    text-align: right;
+    padding-right: 10px;    
+  }
+  #closeSearch, #closeRearrange, #closeRegionSearch, #closeRegionRearrange{
+    font-size: 1.5em;
+    color: white;
+    text-align: left;
+    padding-left: 10px;    
+  }
+  #closeSearch_floating, #closeRearrange_floating, #closeRegionSearch_floating, #closeRegionRearrange_floating{
+    display: grid;
+    width: 4em;
+    height: 4em;
+    align-content: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ff3849;
+    z-index: 999;
+    position: fixed;
+    bottom: 35px;
+    right: -200px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+  #closeSearch_floting_wraper{    
+    display: grid;
+    width: 100%;    
+  }
+  #closeIcon_floating{
+    font-size: 1.3em;
+    color: white;
+    text-align: center;    
+  }
+  #clostText_floating{  
+    font-size: 0.7em;  
+    color: white;
+    text-align: center;    
+  }
+  .notice{
+    font-size: 0.85em;    
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;    
+  }
+  .modal-footer{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;    
+  }
+  .toggle1-footer{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    place-content: center;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+  }
+  .form-check{    
+    text-align: center;
+    align-content: center;
+    margin-bottom: 1em;
+  }
+  
+  .footer_wraper{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 4fr 1fr;
+    place-content: center;
+  }
+  .goLink{    
+    width: 100%;
+    height: 2.5em;
+    background-color: #03c75a;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    border: None;
+  }
+  #NLink{
+    text-align: right;
+  }
+  .goThemeLink{
+    align-content: right;
+    width: 90%;
+    font-size: 0.8em;
+    background-color: white;
+    color: #03c75a;
+    height: 2.5em;    
+    font-weight: 600;    
+    border-radius: 5px;
+    border: 1px solid #03c75a;
+  }
+  .goThemeLink:hover, .goThemeLink:active{
+    background-color: #eeeeee;
+  }
+  .goApt{
+    width: 100%;    
+    height: 2.5em;
+    background-color: #162235;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    border: None;
+  }
+  .goApt:hover, .gokakao:Hover{
+    box-shadow: rgba(0, 177, 204, 0.3) 0px 0px 0px 3px;
+  }
+  .goApt:active{
+    background-color: #2c405f;
+  }
+  .gokakao:active{
+    background-color: #f8bf02;
+  }
+  
+  .toShare{
+    width: 100%;    
+    height: 2.5em;    
+    font-weight: 600;
+    border-radius: 5px;
+    border: None;
+  }
+  .kakaoShare{
+    width: 2em;    
+    height: 2em;
+    color: #3a2929;    
+    font-size: 1.2em;
+    background:#f8e002;    
+    border-radius: 50%;
+    border: None;
+  }
+  .gokakao{
+    width: 100%;    
+    height: 2.5em;
+    background-color: #f8e002;
+    color: black;
+    font-weight: 600;    
+    border-radius: 5px;
+    border: None;
+  }
+  .comment{
+    font-size: 0.6em;
+    text-align: right;
+    color: gray;
+  }
+  .comment2{
+    font-size: 0.6em;
+    word-wrap: break-word;
+    word-break: keep-all;
+    text-align: left;
+    color: gray;
+  }
+  .commentLine{
+    padding-left: 20px;
+  }
+  .reg_subTable{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    margin-top: 5px;
+  }
+
+  .filterArea{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;    
+  }
+
+  .filterRange{
+    display: grid;
+    position: relative;    
+    align-items: center;    
+    width: 100%;
+    grid-template-columns: 60px 1fr 60px;
+  }
+  #max_val, #min_val{
+    text-align: center;
+  }
+
+  .form-check-input:checked{
+    background-color: #fe4040 !important;
+    border-color:  #fe4040 !important;
+  }  
+  .form-check-input:checked:focus{
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(255, 200, 200, 0.25);
+    border-color:  #fe4040;
+  }
+  .form-check-input:focus{
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(255, 200, 200, 0.25);
+    border-color:  #fe4040;
+  }
+  .form-check-input:active{
+    background-color: #ffcecc;
+    border-color:  #fe4040;
+  }
+  
+  @media only screen and (max-width: 576px){
+    #exampleModal{
+      padding-right: 0px;
+      width: 1920px;
+      height: 1080px;
+      left: 30%;
+    }    
+  }

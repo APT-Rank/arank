@@ -1,0 +1,32 @@
+{
+    "name": "두산건설 부동산 시장현황 분석",
+    "short_name": "두산건설 부동산 시장현황 분석",
+    "description": "두산건설 부동산 시장현황 분석",
+    "dir": "ltr",
+    "start_url": "https://www.aptrank.kr/doosan/index.html",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#162235",
+    "orientation": "landscape",
+    "icons": [{
+      "src": "https://www.aptrank.kr/doosan/biz_Doosan-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },{
+      "src": "https://www.aptrank.kr/doosan/biz_Doosan-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }, {
+      "src": "https://www.aptrank.kr/doosan/biz_Doosan-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }, {
+      "src": "https://www.aptrank.kr/doosan/biz_Doosan-114x114.png",
+      "sizes": "114x114",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+}

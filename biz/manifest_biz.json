@@ -1,0 +1,32 @@
+{
+    "name": "아파트랭크BIZ",
+    "short_name": "아파트랭크BIZ",
+    "description": "아파트 분양 적합한 지역 찾기",
+    "dir": "ltr",
+    "start_url": "https://www.aptrank.kr/biz/index.html",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#162235",
+    "orientation": "landscape",
+    "icons": [{
+      "src": "https://www.aptrank.kr/biz/biz-rank-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },{
+      "src": "https://www.aptrank.kr/biz/biz-rank-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }, {
+      "src": "https://www.aptrank.kr/biz/biz-rank-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }, {
+      "src": "https://www.aptrank.kr/biz/biz-rank-114x114.png",
+      "sizes": "114x114",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+}

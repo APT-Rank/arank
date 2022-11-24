@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KNL2VQN');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-218993952-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-218993952-1');
+
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceWorker_biz.js')
+      .then((reg) => {
+        console.log('Service Worker Registered!', reg);
+      });
+    }
+  </script>
+
+  <title>부동산 시장현황 분석</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="부동산 시장현황 분석">
+  <meta property="og:description" content="부동산 시장현황 분석">
+  <meta property="og:image" content="https://www.aptrank.kr/doosan/thumbnail_biz_Doosan.png">
+  <meta property="og:url" content="https://www.aptrank.kr/doosan/">
+  <meta name="keyword" content="부동산 시장현황 분석">
+  <meta name="description" content="아파트 분양 적합한 지역 찾기">
+  <meta name="author" content="두산건설">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes, minimal-ui">
+
+  <!-- 주소창 등의 웹 브라우저 UI를 표시하지 않기 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- 상태 바의 스타일을 지정 -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- 홈 화면에서 표시되는 앱 이름을 지정 -->
+  <meta name="apple-mobile-web-app-title" content="부동산 시장현황 분석">
+  <!-- 홈 화면에서 표시되는 앱 아이콘을 지정 -->
+  <link rel="apple-touch-icon" href="https://www.aptrank.kr/doosan/biz_Doosan-152x152.png">
+  <!-- 웹 앱 매니페스트를 읽어 들이기 -->
+  <link rel="manifest" href="manifest_biz.json">  
+
+  <link rel="canonical" href="https://www.aptrank.kr/biz/">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="shortcut icon" href="https://www.aptrank.kr/doosan/biz_Doosan.png"/>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"  crossorigin="anonymous"></script>
+
+  <script src="../js/menu_select_box_BIZ.js" type="text/javascript"></script>
+  <script src="./draw_chart_BIZ_Doosan.js" type="text/javascript"></script>
+  <script src="../js/sort.js" type="text/javascript"></script>
+  <script src="../js/search.js" type="text/javascript"></script>  
+  <script src="../js/share.js" type="text/javascript"></script>
+  <script src="../js/distance.js" type="text/javascript"></script>
+  <script src="../js/svg_region.js" type="text/javascript"></script>
+  <script src="./BIZ_guide_Doosan.js" type="text/javascript"></script>
+
+  <link href="./style_biz_Doosan.css" rel="stylesheet"/>
+  <link href="../css/slider.css" rel="stylesheet"/>
+  <link href="../css/distance.css" rel="stylesheet"/>
+
+  <script src="../js/doubleSlider.js" type="text/javascript"></script>
+</head>
+<style>
+</style>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNL2VQN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 타이틀 영역 -->
+  <div id="titleBar_theme">
+    <!--검색 버튼 표시-->
+    <!-- <div id='help' style='font-size: 1.2em' onClick='share(shareTitle, shareText, shareURL)'><i class='fa-solid fa-arrow-up-right-from-square'></i></button></div> -->
+    <!-- <div id="rearrange" class="position-relative" onClick='showRearrangeBar(this)'><i class="fa-solid fa-arrow-down-wide-short"></i></div> -->
+    <div></div>
+    <!--타이틀 표시-->
+    <!-- <div id="title" onClick='window.location.reload()'>아파트랭크<span id="themeLogo">BIZ</span> X 파트너를 찾습니다!</div> -->
+    <div id="title" onClick='window.location.reload()'>
+      <!-- <div style="line-height: 43px"><img src="./Doosan_CI.png" height='25px'/></div> -->
+      <div style="line-height: 48px">부동산 시장현황 분석</div>
+    </div>
+    <div id="ref">
+      <div style="line-height: 30px">데이터 작성: 두산건설 분양팀</div>
+      <div style="line-height: 10px; font-weight: 300; font-size: 0.8em;">(문의: 김규태 과장)</div>
+    </div>
+    <!--공유 버튼-->        
+    <!-- <div id='tripGuide' data-bs-toggle='modal' data-bs-target='#toggleModal1' id='myModal' onClick='showDistance(routeArray)'><i class="fa-solid fa-route"></i></div> -->
+    
+    <!--단지 가중치 설정 버튼 표시-->        
+    <!-- <div id='help' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice()'><i class="fa-solid fa-circle-question"></i></div> -->
+    <div></div>
+  </div>
+
+  <div id="container">
+    <div></div>
+    <div id="centerBox">
+      <!-- Vertically centered scrollable modal -->
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id='aptDetail'></div>
+              <div id='footer'></div>
+            </div>
+          </div>
+        </div>     
+
+      <!--지도 표시 영역-->
+      <div id="map_area">        
+        <div id="svg_map"></div>
+        <div id="legend_area">
+          <div class="ledend_color"></div>
+          <div class="ledend_color" style="background: #dddddd;"></div>
+          <div class="ledend_color" style="background: #B80F0A;"></div>
+          <div class="ledend_color" style="background: #F08080;"></div>
+          <div class="ledend_color" style="background: #fcba03;"></div>
+          <div class="ledend_color" style="background: #66d488;"></div>
+          <div class="ledend_color" style="background: #13a140;"></div>          
+          <div class="ledend_color"></div>
+          <div class="ledend_text"></div>
+          <div class="ledend_text">정보없음</div>
+          <div class="ledend_text">매우나쁨</div>
+          <div class="ledend_text">나쁨</div>
+          <div class="ledend_text">보통</div>
+          <div class="ledend_text">좋음</div>
+          <div class="ledend_text">매우좋음</div>          
+          <div class="ledend_text"></div>
+        </div>
+        <!--기준 금리 표시 영역: Absolute-->
+        <div id="standatd_interest">
+          <div style="border-bottom: 1px solid #ddd">한국 기준금리</div><div id="interest_ko" style="border-bottom: 1px solid #ddd; text-align: right;"></div>
+          <div>미국 기준금리</div><div id="interest_us" style="text-align: right"></div>          
+        </div>
+      </div> 
+
+      <!--리스트 데이터 붙여넣는 영역-->
+      <div id='contentBox'>
+        <div id="themeSelections">        
+          <div id="sido_selection"><select id="sido" onChange="sidoChange()"></select></div>
+          <div id="gungu_selection"><select id="gungu" onChange="updateRegion()"></select></div>          
+          <div></div>
+          <div id="update_info" style="text-align: right">업데이트 : 2022-11-04 <br> (2022년 9월 데이터 기준) </div>
+        </div>
+        <div id="dataWrapper">
+          <div id="dataList"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div></div>
+  </div>
+
+  <div id="footer_area">
+    <div></div>
+    <div id="footer_text">
+      <div></div>
+      <div><img src='./WEVE_BI_01.jpg' width='50px'/></div>
+    </div>
+    <div></div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+</body>
+
+<script>
+  var selectedRegion = "Korea"
+  var selectedSubRegion = "1000000000_Korea"
+  var selectedTheme = "under100M"  
+
+  var regionName = ""
+
+  var linked = ""
+  var regionValue = ""
+
+  var itemNum = 0;
+  var aptData = "";
+  var prev_subRegion = ""
+
+  var broswerInfo = navigator.userAgent;  
+
+  $(document).ready(function(){
+    var option = ""
+    for(i = 0 ; i < regions.length ; i++){
+        option += "<option value='" + regions[i][1] + "'>" + regions[i][0] + "</option>"
+    }
+    $('#sido').html(option)    
+
+    var lastRegion = localStorage.getItem('lastRegion')
+    var lastSubRegion = localStorage.getItem('lastSubRegion')
+    var lastTheme = localStorage.getItem('lastTheme')
+    var lastNoticed = localStorage.getItem('lastNoticed')        
+
+    var lastRegion = sessionStorage.getItem('lastRegion')
+    var lastSubRegion = sessionStorage.getItem('lastSubRegion')
+    var lastMonth = sessionStorage.getItem('lastMonth')
+
+    const url = new URL(window.location.href)
+    const urlParams = url.searchParams
+    console.log(urlParams)
+
+    if(urlParams.has('reg')){
+      console.log(urlParams.get('reg'))
+      selectedRegion = urlParams.get('reg')
+    }
+    else if(lastRegion != null){
+      selectedRegion = lastRegion
+    }
+
+    if(urlParams.has('sub')){
+      console.log(urlParams.get('sub'))
+      selectedSubRegion = urlParams.get('sub')
+    }
+    else if(lastSubRegion != null){
+      selectedSubRegion = lastSubRegion
+    }
+
+    $("#sido").val(selectedRegion).prop("selected", true);
+    regionName = $("#sido option:selected").val();
+
+    $('#themeDataList').html("");
+
+    optionChange(selectedSubRegion)
+    updateRegion()
+    
+    loadStandardInterest_KO()
+    loadStandardInterest_US()    
+
+    $('div.modal').on('show.bs.modal', function() {
+      var modal = this;
+      var hash = modal.id;
+      window.location.hash = hash;
+      window.onhashchange = function() {
+        if (!location.hash){
+          $(modal).modal('hide');
+        }
+      }
+    });
+  });
+
+  function loadStandardInterest_KO(){
+    url = "https://www.aptrank.kr/BOK_standatd_interest.json"
+    $.getJSON(url, function(json) {
+        ko_interest = json;
+        time_obj = ko_interest['DATA_VALUE']
+        data_obj = ko_interest['DATA_VALUE']
+        
+        interest = Object.values(data_obj)
+        update_time = Object.values(time_obj)        
+        ko_interest = Number(interest[interest.length-1])
+        $('#interest_ko').html(ko_interest.toFixed(2) + "%")
+    })
+  }
+
+  function loadStandardInterest_US(){
+    url = "https://www.aptrank.kr/FED_standatd_interest.json"
+    $.getJSON(url, function(json) {
+        us_interest = json;
+        time_obj = us_interest['DATE']
+        data_obj = us_interest['INTEREST']
+        
+        interest = Object.values(data_obj)
+        update_time = Object.values(time_obj)        
+        us_interest = Number(interest[interest.length-1])
+        $('#interest_us').html(us_interest.toFixed(2) + "%")
+    })
+  }  
+
+  function sidoChange(){
+    optionChange()
+    updateRegion()
+  }
+
+  function saveLocalStorage(){
+    localStorage.setItem('lastRegion', selectedRegion)
+    localStorage.setItem('lastSubRegion', selectedSubRegion)
+    localStorage.setItem('lastTheme', selectedTheme)
+  }
+
+  function scrollUp(){
+    $( 'html, body' ).animate( { scrollTop : 0 }, 50 );
+  }
+
+  function optionChange(subRegion){
+    selectedSubRegion = subRegion
+    regionName = $("#sido option:selected").val();
+    selectedRegion = regionName
+    var changeItem
+    if(regionName == 'Korea'){
+      changeItem = inKorea
+    }
+    if(regionName == 'Seoul'){
+      changeItem = inSeoul
+    }
+    if(regionName == 'Busan'){
+      changeItem = inBusan
+    }
+    if(regionName == 'Incheon'){
+      changeItem = inIncheon
+    }
+    if(regionName == 'Daegu'){
+      changeItem = inDaegu
+    }
+    if(regionName == 'Gwangju'){
+      changeItem = inGwangju
+    }
+    if(regionName == 'Daejeon'){
+      changeItem = inDaejeon
+    }
+    if(regionName == 'Ulsan'){
+      changeItem = inUlsan
+    }
+    if(regionName == 'Sejong'){
+      changeItem = inSejong
+    }
+    if(regionName == 'Gyeonggi'){
+      changeItem = inGyeonggi
+    }
+    if(regionName == 'Gangwondo'){
+      changeItem = inGangwondo
+    }
+    if(regionName == 'Chungcheongbukdo'){
+      changeItem = inChungcheongbukdo
+    }
+    if(regionName == 'Chungcheongnamdo'){
+      changeItem = inChungcheongnamdo
+    }
+    if(regionName == 'Jeollabukdo'){
+      changeItem = inJeollabukdo
+    }
+    if(regionName == 'Jeollanamdo'){
+      changeItem = inJeollanamdo
+    }
+    if(regionName == 'Gyeongsangbukdo'){
+      changeItem = inGyeongsangbukdo
+    }
+    if(regionName == 'Gyeongsangnamdo'){
+      changeItem = inGyeongsangnamdo
+    }
+    if(regionName == 'Jejudo'){
+      changeItem = inJejudo
+    }
+    $('#gungu').empty();
+
+    for(var i = 0 ; i < changeItem.length; i++){
+      var subOption = $("<option value='" + changeItem[i][1] + "'>" + changeItem[i][0] + "</option>")
+      $('#gungu').append(subOption);
+    }    
+
+    if(selectedSubRegion == undefined){
+      $("#gungu").val(changeItem[0][1]).prop("selected", true);
+      selectedSubRegion = $("#gungu option:selected").val()
+    }
+    else{
+      $("#gungu").val(selectedSubRegion).prop("selected", true);      
+    }    
+    updateRegion()    
+  }  
+
+  function updateRegion(){
+    var selection = document.getElementById("gungu")
+    selectedRegion = $("#sido option:selected").val()
+    selectedSubRegion = $("#gungu option:selected").val()    
+    updateTable()
+    regionName = $("#sido option:selected").text()
+    
+  }
+
+  function updateTable(){
+    $('div.modal').modal("hide");
+    //$('#sort').css("visibility", "visible")
+    $('html').scrollTop(0)    
+    
+    //url = "https://www.aptrank.kr/biz/" + region + ".json"
+    //url = "https://www.aptrank.kr/biz/Location_Build_Valuated.json"
+    url = "https://www.aptrank.kr/doosan/BIZ_Valuated_Doosan_202209.json"
+
+    $.getJSON(url, function(json) {
+        //console.log(json);
+        aptData = json;         
+        //sortData = json;
+        //itemNum = json.data.length;
+
+        ListUp(aptData.data)
+        region_coloring(aptData.data)
+  })}
+  
+function region_coloring(regionData){
+  search_array = []
+
+  if(selectedRegion == "Korea"){
+    $('#svg_map').html(svg_Korea)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = regions
+  }
+  if(selectedRegion == "Seoul"){
+    $('#svg_map').html(svg_Seoul)
+    $('#svg_map .TEXT').css("font-size", "0.8em")
+    search_array = inSeoul
+  }
+  if(selectedRegion == "Incheon"){
+    $('#svg_map').html(svg_Incheon)
+    $('#svg_map .TEXT').css("font-size", "0.8em")
+    search_array = inIncheon
+  }
+  if(selectedRegion == "Gyeonggi"){
+    search_array = inGyeonggi
+    if(selectedSubRegion == "4128100000_Gyeonggi_Goyang_Deogyang" || selectedSubRegion == "4128500000_Gyeonggi_Goyang_Ilsandong" || selectedSubRegion == "4128700000_Gyeonggi_Goyang_Ilsanseo"
+       || selectedSubRegion == "4113500000_Gyeonggi_Seongnam_Bundang" || selectedSubRegion == "4113100000_Gyeonggi_Seongnam_Sujeong" || selectedSubRegion == "4113300000_Gyeonggi_Seongnam_Jungwon" 
+       || selectedSubRegion == "4111300000_Gyeonggi_Suwon_Gwonseon" || selectedSubRegion == "4111700000_Gyeonggi_Suwon_Yeongtong" || selectedSubRegion == "4111100000_Gyeonggi_Suwon_Jangan" || selectedSubRegion == "4111500000_Gyeonggi_Suwon_Paldal" 
+       || selectedSubRegion == "4127300000_Gyeonggi_Ansan_Danwon" || selectedSubRegion == "4127100000_Gyeonggi_Ansan_Sangnok" 
+       || selectedSubRegion == "4117300000_Gyeonggi_Anyang_Dongan" || selectedSubRegion == "4117100000_Gyeonggi_Anyang_Manan" 
+       || selectedSubRegion == "4146300000_Gyeonggi_Yongin_Giheung" || selectedSubRegion == "4146500000_Gyeonggi_Yongin_Suji" || selectedSubRegion == "4146100000_Gyeonggi_Yongin_Cheoin" ){
+        $('#svg_map').html(svg_Gyeonggi_detail)
+    }
+    else{
+      $('#svg_map').html(svg_Gyeonggi)
+    }
+    $('#svg_map .TEXT').css("font-size", "0.8em")
+  }
+  if(selectedRegion == "Busan"){
+    $('#svg_map').html(svg_Busan)
+    $('#svg_map .TEXT').css("font-size", "0.8em")
+    search_array = inBusan
+  }
+  if(selectedRegion == "Daegu"){
+    $('#svg_map').html(svg_Daegu)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inDaegu
+  }
+  if(selectedRegion == "Gwangju"){
+    $('#svg_map').html(svg_Gwangju)
+    $('#svg_map .TEXT').css("font-size", "1em")
+    search_array = inGwangju
+  }
+  if(selectedRegion == "Daejeon"){
+    $('#svg_map').html(svg_Daejeon)
+    $('#svg_map .TEXT').css("font-size", "1em")
+    search_array = inDaejeon
+  }
+  if(selectedRegion == "Ulsan"){
+    $('#svg_map').html(svg_Ulsan)
+    $('#svg_map .TEXT').css("font-size", "1em")
+    search_array = inUlsan
+  }
+  if(selectedRegion == "Sejong"){
+    $('#svg_map').html(svg_Sejong)
+    $('#svg_map .TEXT').css("font-size", "1.5em")
+    search_array = inSejong
+  }
+  if(selectedRegion == "Jejudo"){
+    $('#svg_map').html(svg_Jejudo)
+    $('#svg_map .TEXT').css("font-size", "1.3em")
+    search_array = inJejudo
+  }
+  if(selectedRegion == "Gangwondo"){
+    $('#svg_map').html(svg_Gangwondo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inGangwondo
+  }
+  if(selectedRegion == "Chungcheongbukdo"){
+    $('#svg_map').html(svg_Chungcheongbukdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inChungcheongbukdo
+  }
+  if(selectedRegion == "Chungcheongnamdo"){
+    $('#svg_map').html(svg_Chungcheongnamdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inChungcheongnamdo
+  }
+  if(selectedRegion == "Jeollabukdo"){
+    $('#svg_map').html(svg_Jeollabukdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inJeollabukdo
+  }
+  if(selectedRegion == "Jeollanamdo"){
+    $('#svg_map').html(svg_Jeollanamdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inJeollanamdo
+  }
+  if(selectedRegion == "Gyeongsangbukdo"){
+    $('#svg_map').html(svg_Gyeongsangbukdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inGyeongsangbukdo
+  }
+  if(selectedRegion == "Gyeongsangnamdo"){
+    $('#svg_map').html(svg_Gyeongsangnamdo)
+    $('#svg_map .TEXT').css("font-size", "0.9em")
+    search_array = inGyeongsangnamdo
+  }
+
+  $('#svg_map .TEXT').css("fill", "#aaa")
+
+  $(".go_Korea").hover(function(){            
+    $("#go_Korea_bg").css("fill", "#dddddd");
+    //$("#go_Korea_arrow").css("fill", "#dddddd");
+  }, function(){            
+    $("#go_Korea_bg").css("fill", "#ffffff");
+  })
+  
+  $(".go_Korea").click(function(){
+    goRegion = ""
+    if(selectedSubRegion == "4128100000_Gyeonggi_Goyang_Deogyang" || selectedSubRegion == "4128500000_Gyeonggi_Goyang_Ilsandong" || selectedSubRegion == "4128700000_Gyeonggi_Goyang_Ilsanseo"){
+      goRegion = "4128000000_Gyeonggi_Goyang"
+    }
+    else if(selectedSubRegion == "4113500000_Gyeonggi_Seongnam_Bundang" || selectedSubRegion == "4113100000_Gyeonggi_Seongnam_Sujeong" || selectedSubRegion == "4113300000_Gyeonggi_Seongnam_Jungwon"){
+      goRegion = "4113000000_Gyeonggi_Seongnam"
+    }
+    else if(selectedSubRegion == "4111300000_Gyeonggi_Suwon_Gwonseon" || selectedSubRegion == "4111700000_Gyeonggi_Suwon_Yeongtong" || selectedSubRegion == "4111100000_Gyeonggi_Suwon_Jangan" || selectedSubRegion == "4111500000_Gyeonggi_Suwon_Paldal" ){
+      goRegion = "4111000000_Gyeonggi_Suwon"
+    }
+    else if(selectedSubRegion == "4127300000_Gyeonggi_Ansan_Danwon" || selectedSubRegion == "4127100000_Gyeonggi_Ansan_Sangnok"){
+      goRegion = "4127000000_Gyeonggi_Ansan"
+    }
+    else if(selectedSubRegion == "4117300000_Gyeonggi_Anyang_Dongan" || selectedSubRegion == "4117100000_Gyeonggi_Anyang_Manan"){
+      goRegion = "4117000000_Gyeonggi_Anyang"
+    }
+    else if(selectedSubRegion == "4146300000_Gyeonggi_Yongin_Giheung" || selectedSubRegion == "4146500000_Gyeonggi_Yongin_Suji" || selectedSubRegion == "4146100000_Gyeonggi_Yongin_Cheoin"){
+      goRegion = "4146000000_Gyeonggi_Yongin"
+    }
+    else {      
+      goRegion = "Korea"      
+    }
+    changeRegion(goRegion)
+  })
+
+  pointed_region = selectedSubRegion + "z"
+  pointed_text = "txt_" + selectedSubRegion + "z"
+  
+  for (i = 0 ; i < search_array.length ; i++){    
+      searching_region = search_array[i][1]
+      for (j = 0 ; j < regionData.length ; j++){
+        if(searching_region == regionData[j]['Link']){
+          score = regionData[j]['총점'][0]
+          //score = Math.floor(Math.random() * 101)
+          finds = "#svg_map #" + searching_region          
+          if(score >= 0 && score <= 20){ $(finds).css("fill", "#B80F0A"); $(finds).css("fill-opacity", "0.6") }
+          else if(score > 20 && score <= 40){ $(finds).css("fill", "#F08080"); $(finds).css("fill-opacity", "0.6") }
+          else if(score > 40 && score <= 60){ $(finds).css("fill", "#fcba03"); $(finds).css("fill-opacity", "0.6") }
+          else if(score > 60 && score <= 80){ $(finds).css("fill", "#66d488"); $(finds).css("fill-opacity", "0.6")  }
+          else if(score > 80 && score <= 100){ $(finds).css("fill", "#13a140"); $(finds).css("fill-opacity", "0.6")  }
+
+          find_text = "#svg_map #txt_" + searching_region
+          $(find_text).css("fill", "#000")
+
+          if(searching_region != selectedSubRegion){
+            $(finds).hover(function(){            
+              $(this).css("fill-opacity", "1");
+            }, function(){            
+              $(this).css("fill-opacity", "0.6");
+            })
+            $(finds).click(function(){
+              changeRegion(this.id)
+            })
+          }
+          else{
+            if(selectedSubRegion == "4113000000_Gyeonggi_Seongnam" || selectedSubRegion == "4128000000_Gyeonggi_Goyang" || selectedSubRegion == "4111000000_Gyeonggi_Suwon"
+                || selectedSubRegion == "4127000000_Gyeonggi_Ansan" || selectedSubRegion == "4117000000_Gyeonggi_Anyang" || selectedSubRegion == "4146000000_Gyeonggi_Yongin"){
+                $(finds).hover(function(){            
+                $(this).css("fill-opacity", "1");
+              }, function(){            
+                $(this).css("fill-opacity", "1");
+              })
+              $(finds).click(function(){
+                if(selectedSubRegion == "4113000000_Gyeonggi_Seongnam"){ changeRegion('4113500000_Gyeonggi_Seongnam_Bundang') }
+                if(selectedSubRegion == "4128000000_Gyeonggi_Goyang"){ changeRegion('4128700000_Gyeonggi_Goyang_Ilsanseo') }
+                if(selectedSubRegion == "4111000000_Gyeonggi_Suwon"){ changeRegion('4111700000_Gyeonggi_Suwon_Yeongtong') }
+                if(selectedSubRegion == "4127000000_Gyeonggi_Ansan"){ changeRegion('4127300000_Gyeonggi_Ansan_Danwon') }
+                if(selectedSubRegion == "4117000000_Gyeonggi_Anyang"){ changeRegion('4117300000_Gyeonggi_Anyang_Dongan') }
+                if(selectedSubRegion == "4146000000_Gyeonggi_Yongin"){ changeRegion('4146500000_Gyeonggi_Yongin_Suji') }
+              })
+
+              let svg = document.querySelector("svg");
+              selected_region = document.getElementById(selectedSubRegion)
+              selected_region_copy = selected_region
+              selected_region_copy.id = pointed_region  
+              $("#" + pointed_region).css("stroke", "rgba(0, 64, 255, 0.7)")
+              $("#" + pointed_region).css("stroke-width", "5")
+              $("#" + pointed_region).css("fill-opacity", "1")
+              svg.appendChild(selected_region_copy);
+
+              selected_region_text = document.getElementById("txt_" + selectedSubRegion)            
+              selected_region_text_copy = selected_region_text
+              selected_region_text_copy.id = pointed_text  
+              
+              svg.appendChild(selected_region_text_copy);
+            }
+            else{
+              let svg = document.querySelector("svg");
+              selected_region = document.getElementById(selectedSubRegion)
+              selected_region_copy = selected_region
+              selected_region_copy.id = pointed_region
+              $("#" + pointed_region).css("stroke", "rgba(0, 64, 255, 0.7)")
+              $("#" + pointed_region).css("stroke-width", "5")
+              $("#" + pointed_region).css("fill-opacity", "1")
+              svg.appendChild(selected_region_copy);
+
+              selected_region_text = document.getElementById("txt_" + selectedSubRegion)            
+              selected_region_text_copy = selected_region_text
+              selected_region_text_copy.id = pointed_text  
+              
+              svg.appendChild(selected_region_text_copy);
+            }         
+          }
+        }
+    }
+  }
+
+}
+
+function set_text_color(txt){
+  color_code = ""
+  if(txt == "강한 상승" || txt == "매우좋음"){
+    color_code = "#06d151"
+  }
+  if (txt == "약한 상승" || txt == "상승 전환" || txt == "좋음"){
+    color_code = "#36c97b"
+  }
+  if (txt == "보합" || txt == "보통"){
+    color_code = "#e89b02"
+  }
+  if (txt == "약한 하락" || txt == "하락 전환" || txt == "나쁨"){
+    color_code = "#e6543e"
+  }
+  if (txt == "강한 하락" || txt == "매우나쁨"){
+    color_code = "#d92004"
+  }
+  return color_code
+}
+
+function set_color(score){
+  color_code = ""
+  if(score > 80){
+    color_code = "#13a140"
+  }
+  else if (score <= 80 && score > 60){
+    color_code = "#66d488"
+  }
+  else if (score <= 60 && score > 40){
+    color_code = "#fcba03"
+  }
+  else if (score <= 40 && score > 20){
+    color_code = "#F08080"
+  }
+  else if (score <= 20 && score >= 0){
+    color_code = "#B80F0A"
+  }
+
+  return color_code
+}
+
+function changeRegion(sido){
+  find_length = sido.split("_")
+
+  if( find_length.length > 1 ){
+    selectedSubRegion = sido
+    selectedRegion = (sido.split("_"))[1]    
+    optionChange(selectedSubRegion)
+  }
+  else{
+    selectedRegion = sido
+    $('#sido').val(selectedRegion).prop("selected", true)
+    optionChange()
+  }  
+}
+
+function ListUp(listData){  
+  $('html').scrollTop(0)    
+  $('#dataList').html("");
+
+  var addon_html = ""     
+  if(selectedRegion == 'Korea'){
+    $('#dataList').css("display", "grid")
+    //아파트랭크 연결 버튼
+    var aptrank_link = "<div><img src = './icon_apt_rank.png' width='40px' height='40px'></div>"
+            + "<div style='padding-left: 8px;'>전국 시도 <br> 아파트랭크 정보 보기</div>"
+            + "<div style='text-align:center; font-size: 1.5em; line-height: 2em'><i class='fa-solid fa-circle-chevron-right'></i></div>"        
+    $('#go_to_aptrank').html(aptrank_link)
+
+    for(i = 0; i < listData.length; i++){
+      var compare_link = listData[i]["Link"]      
+      
+      for(j = 1; j <regions.length; j++){
+        if(compare_link == regions[j][1]){            
+            var region_name = listData[i]["시군구"]
+            var color_status = listData[i]["평점"]            
+            
+            var pop_info = listData[i]["인구정보"]
+            var pop_rate = listData[i]["인구상승률"]
+            var pop_score = listData[i]["인구점수"]
+
+            var sales_3y_avg = listData[i]["매매가_3년평균"]
+            var sales_3y_rate = listData[i]["매매가_3년_상승률"]
+            var sales_quater_avg = listData[i]["분기별_매매가_평균"]
+            var sales_rate_quater_avg = listData[i]["분기별_매매가_상승률"]            
+            var sales_score = listData[i]["매매점수"]
+
+            var price_per_py = listData[i]["평단가"]
+
+            var build_year = listData[i]["년차"]
+            var build_score = listData[i]["노후도점수"]
+
+            var rent_3y_avg = listData[i]["전세가_3년평균"]
+            var rent_3y_rate = listData[i]["전세가_3년_상승률"]
+            var rent_quater_avg = listData[i]["분기별_전세가_평균"]
+            var rent_rate_quater_avg = listData[i]["분기별_전세가_상승률"]
+            var rent_score = listData[i]["전세점수"]
+
+            var non_sales_result = listData[i]["미분양현황"]
+
+            var supply_volume = listData[i]["입주물량"]
+            var supply_proper = listData[i]["적정공급물량"]
+            var supply_score = listData[i]["입주량점수"]
+
+            var supply_new_volume = listData[i]["분양물량"]            
+            var supply_new_score = listData[i]["분양물량점수"]
+
+            var deal_info = listData[i]["거래량현황"]
+            var deal_score = listData[i]["거래량점수"]
+
+            var deal_3y_avg = listData[i]["거래량_3년평균"]            
+            var deal_quater_avg = listData[i]["분기별_거래량_평균"]
+            var deal_rate_quater_avg = listData[i]["분기별_거래량_상승률"]
+            var deal_score = listData[i]["거래량점수"]
+
+            var regulation_info = listData[i]["규제현황"]
+
+            var total_score = listData[i]["총점"]
+            var sido_id = compare_link
+
+            addon_html += "<div class='region_info' id='" + sido_id + "' onClick='changeRegion(this.id)'>"
+              addon_html += "<div class='region_status'>"
+                addon_html += "<div class='region_name'>" + "<span style='color:" + set_color(total_score[0]) +"'>●</span>" + " " + region_name + "</div>"
+                addon_html += "<div style='font-size: 0.8em; font-weight: 600; text-align: right; color: #666666; line-height: 2em'>" + "지역구 현황 :&nbsp" + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#13a140'>●</span></div>" + "<div class='subregion_num'>" + color_status[0] + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#66d488'>●</span></div>" + "<div class='subregion_num'>" + color_status[1] + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#fcba03'>●</span></div>" + "<div class='subregion_num'>" + color_status[2] + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#F08080'>●</span></div>" + "<div class='subregion_num'>" + color_status[3] + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#B80F0A'>●</span></div>" + "<div class='subregion_num'>" + color_status[4] + "</div>"
+                addon_html += "<div class='subregion_traffic'><span style='color:#dddddd'>●</span></div>" + "<div class='subregion_num'>" + color_status[5] + "</div>"
+              addon_html += "</div>"
+              
+              addon_html += "<div class = 'region_table1'>"
+
+                supply_plus_minus = supply_proper - (supply_volume[0] - supply_new_volume[0])
+                if(supply_plus_minus < 0){ supply_pm =  Math.abs(supply_plus_minus*-1).toLocaleString() + " 과다"}
+                if(supply_plus_minus >= 0){ supply_pm =  Math.abs(supply_plus_minus).toLocaleString() + " 부족"}
+
+                addon_html += "<div class='table_top'><strong>수요대비</strong></div>" + "<div class='table_top'>총인구</div>" + "<div class='table_top'>적정공급량</div>" + "<div class='table_top'>당해 공급량</div>"
+                addon_html += "<div><strong>" + supply_pm + "</strong></div>" + "<div>" + pop_info[0][0].toLocaleString() +"명</div>" + "<div>"+ supply_proper.toLocaleString() + "세대</div>" + "<div>"+supply_volume[0].toLocaleString()+"세대</div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class = 'region_table2'>"
+                addon_html += "<div class='table_top'><strong>평균평단가</strong></div>" + "<div class='table_top'>10평형</div>"
+                              + "<div class='table_top'>20평형</div>" + "<div class='table_top'>30평형</div>" + "<div class='table_top'>40평형</div>" + "<div class='table_top'>50평형↑</div>"
+                addon_html += "<div><strong>@"+Math.round(price_per_py[0], 0).toLocaleString()+"</strong></div>" + "<div>@"+Math.round(price_per_py[1], 0).toLocaleString()+"</div>" + "<div>@"+Math.round(price_per_py[2], 0).toLocaleString()+"</div>"
+                              + "<div>@"+Math.round(price_per_py[3], 0).toLocaleString()+"</div>" + "<div>@" + Math.round( (Number(price_per_py[4])), 0).toLocaleString() + "</div>" + "<div>@"+Math.round(price_per_py[5], 0).toLocaleString()+"</div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+          }
+        }
+    }    
+  }
+  else{
+    $('#dataList').css("display", "block")
+    var duration = listData[0]["시점"]
+    var time_line = []
+    for(i = 0 ; i < duration.length;  i++){
+      time_text = duration[i].substr(2 , 2) + "."
+      if(duration[i].substr(4, 2) == "01"){
+        time_text += "1Q"
+      }
+      if(duration[i].substr(4, 2) == "04"){
+        time_text += "2Q"
+      }
+      if(duration[i].substr(4, 2) == "07"){
+        time_text += "3Q"
+      }
+      if(duration[i].substr(4, 2) == "10"){
+        time_text += "4Q"
+      }
+
+      time_line.push(time_text)
+    }
+    console.log(time_line)
+
+    for(i = 0; i < listData.length; i++){
+      var compare_link = listData[i]["Link"]
+      if(compare_link == selectedSubRegion){
+        var region_name = listData[i]["시군구"]
+
+        var long_region_name = region_name.split(' ')
+        if(selectedSubRegion == "4812500000_Gyeongsangnamdo_Changwon_Masanhappo" || selectedSubRegion == "4812700000_Gyeongsangnamdo_Changwon_Masanhoewon"){
+          region_name = long_region_name[1] + " " + long_region_name[2]
+        }
+
+        var color_status = listData[i]["평점"]        
+        
+        var pop_info = listData[i]["인구정보"]
+        var pop_rate = listData[i]["인구상승률"]
+        var pop_score = listData[i]["인구점수"]
+
+        var sales_3y_avg = listData[i]["매매가_3년평균"]
+        var sales_3y_rate = listData[i]["매매가_3년_상승률"]
+        var sales_quater_avg = listData[i]["분기별_매매가_평균"]
+        var sales_rate_quater_avg = listData[i]["분기별_매매가_상승률"]            
+        var sales_score = listData[i]["매매점수"]
+
+        var price_per_py = listData[i]["평단가"]
+
+        var build_year = listData[i]["년차"]
+        var build_score = listData[i]["노후도점수"]
+
+        var rent_3y_avg = listData[i]["전세가_3년평균"]
+        var rent_3y_rate = listData[i]["전세가_3년_상승률"]
+        var rent_quater_avg = listData[i]["분기별_전세가_평균"]
+        var rent_rate_quater_avg = listData[i]["분기별_전세가_상승률"]
+        var rent_score = listData[i]["전세점수"]
+        var rent_price_rate = listData[i]["전세가율"]
+
+        var non_sales_result = listData[i]["미분양현황"]
+
+        
+        var supply_proper = listData[i]["적정공급물량"]
+        var supply_score = listData[i]["공급량점수"]
+
+        var supply_volume = listData[i]["입주물량"]
+        var supply_new_volume = listData[i]["분양물량"]        
+
+        var deal_info = listData[i]["거래량현황"]
+        var deal_score = listData[i]["거래량점수"]
+
+        var deal_3y_avg = listData[i]["거래량_3년평균"]            
+        var deal_quater_avg = listData[i]["분기별_거래량_평균"]
+        var deal_rate_quater_avg = listData[i]["분기별_거래량_상승률"]
+        var deal_score = listData[i]["거래량점수"]
+
+        var regulation_info = listData[i]["규제현황"]
+
+        var total_score = listData[i]["총점"]        
+
+          //아파트랭크 연결 버튼
+          var aptrank_link = "<div><img src = './icon_apt_rank.png' width='40px' height='40px'></div>"
+            + "<div style='padding-left: 8px;'>" + region_name + "의 <br> 가성비 좋은 아파트랭크 보기</div>"
+            + "<div style='text-align:center; font-size: 1.5em; line-height: 2em'><i class='fa-solid fa-circle-chevron-right'></i></div>"        
+          $('#go_to_aptrank').html(aptrank_link)
+
+          //총평가 표시 영역
+          addon_html += "<div id='subRegion_line1'>"
+            addon_html += "<div id='region_eval_table'>"
+              addon_html += "<div style='border-right: 1px solid #aaa'>"
+                addon_html += "<div style='color:" + set_color(total_score[0]) +"; font-size: 2rem; line-height:1.3em'>●</div>"
+                addon_html += "<div style='line-height: 1em; font-weight: 600'>" + total_score[1] + "</div>"
+                addon_html += "<div style='font-size: 0.8em; font-weight: 600'>(" + total_score[0].toFixed(2) + "점)</div>"
+              addon_html += "</div>"                            
+              pop_total = Number(pop_info[0][0]).toLocaleString() + "명"
+              pop_rate_3y = Number(pop_rate[4]).toFixed(2)
+              if (pop_rate_3y < 0){ pop_rate_comment = (pop_rate_3y * -1) + "% 감소"}
+              if (pop_rate_3y >= 0){ pop_rate_comment = (pop_rate_3y) + "% 증가"}
+
+              eval_summary = "<li>" + region_name + "의 총인구 <u>" + pop_total + "</u> (3년전 대비 <u>'" + pop_rate_comment + "'</u>)."
+              eval_summary += "<li>" +"매매가는 최근 이전 분기 가격 대비 <span style='color:" + set_text_color(sales_score[2]) + "'>'" + sales_score[2] + "세'</span>로 분석."
+ 
+              deal_avg = Number(deal_3y_avg).toFixed(0)
+              deal_current = Number(deal_quater_avg[11]).toFixed(0)
+              deal_rate = ((deal_rate_quater_avg[11]/deal_3y_avg)*100).toFixed(2) + "%"
+
+              eval_summary += "<li>" +" 거래량은 <u>총 " + deal_current + "건</u>, 3년 평균 대비 <u>" + deal_rate + "</u>로 <span style='color:" + set_text_color(deal_score[1]) + "'>'" + deal_score[1] + "'</span> 상태로 판단."
+
+              supply_proper_formatted = Number(supply_proper).toLocaleString()
+              supply_volume_year = (Number(supply_volume[0])+Number(supply_new_volume[0])).toLocaleString()
+              supply_volume_plus_minus = supply_proper - supply_volume[0]
+              if(supply_volume_plus_minus < 0){
+                supply_volume_plus_minus = "<u>'" + (supply_volume_plus_minus * -1).toLocaleString() + "세대 과다'</u>로"
+              }
+              else{
+                supply_volume_plus_minus = "<u>'" + supply_volume_plus_minus.toLocaleString() + "세대 부족'</u>으로"
+              }
+              
+              eval_summary += "<li>" + " 입주물량은 당해 기준, <u>총 " + supply_volume_year + "세대</u> 입주 예정."
+              eval_summary += "<li>" + " 적정공급량 대비 " + supply_volume_plus_minus + "<span style='color:" + set_text_color(supply_score[1]) + "'> '" + supply_score[1] + "'</span> 상태로 분석."
+
+              eval_summary += "<li>" +" 종합적 결과, <u>" + region_name + "</u>는 현재 분양하기에 <span style='color:" + set_text_color(total_score[1]) + "'>'" + total_score[1] + "'</span> 상태로 판단."
+
+              addon_html += "<div id='region_summary'>" + eval_summary + "</div>"
+            addon_html +="</div>"
+          addon_html += "</div>"
+
+          //평단가, 주택노후, 규제현황 표시 영역
+          addon_html += "<div id='subRegion_line2'>"
+
+            //평단가 표시
+            addon_html += "<div class='subRegion_info'>"
+              addon_html += "<div class='subRegion_name'>평단가<span style='font-size: 0.7em'> (단위: 만원)</span></div>"
+              addon_html += "<div class = 'subRegion_py_price_table'>"
+                addon_html += "<div class='table_top'><strong>평균</strong></div>" + "<div class='table_top'>10평형</div>"
+                              + "<div class='table_top'>20평형</div>" + "<div class='table_top'>30평형</div>" + "<div class='table_top'>40평형</div>" + "<div class='table_top'>50평형↑</div>"
+
+                py_price_avg = Math.round(Number(price_per_py[0]),0).toLocaleString() + '만'
+                py_price_10 = price_per_py[1]
+                py_price_20 = price_per_py[2]
+                py_price_30 = price_per_py[3]
+                py_price_40 = price_per_py[4]
+                py_price_50 = price_per_py[5]
+                if(py_price_10 == '거래 없음'){ py_price_10 = "--" }
+                else{ py_price_10 = "@" + Math.round(Number(price_per_py[1]),0).toLocaleString()}
+                if(py_price_20 == '거래 없음'){ py_price_20 = "--" }
+                else{ py_price_20 = "@" + Math.round(Number(price_per_py[2]),0).toLocaleString()}
+                if(py_price_30 == '거래 없음'){ py_price_30 = "--" }
+                else{ py_price_30 = "@" + Math.round(Number(price_per_py[3]),0).toLocaleString()}
+                if(py_price_40 == '거래 없음'){ py_price_40 = "--" }
+                else{ py_price_40 = "@" + Math.round(Number(price_per_py[4]),0).toLocaleString()}
+                if(py_price_50 == '거래 없음'){ py_price_50 = "--" }
+                else{ py_price_50 = "@" + Math.round(Number(price_per_py[5]),0).toLocaleString()}
+
+                addon_html += "<div><strong>@" + py_price_avg + "</strong></div>" + "<div>" + py_price_10 +"</div>" + "<div>" + py_price_20 + "</div>"
+                              + "<div>" + py_price_30 + "</div>" + "<div>" + py_price_40 + "</div>" + "<div>" + py_price_50 + "</div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+            
+            //주택노후 표시
+            addon_html += "<div class='subRegion_info'>"
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(build_score[0]) +"'>●</span>" + " 주택노후" + "<span style='font-size: 0.85em'> (" + build_score[0].toFixed(2) + "점 / " + build_score[1] + ")</span><span style='font-size: 0.7em'> (단위: 세대)</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"apt_years\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+
+                addon_html += "<div class = 'subRegion_year_table'>"
+                  addon_html += "<div class='table_top'><strong>평균연차</strong></div>" + "<div class='table_top'>0-5년</div>"
+                                + "<div class='table_top'>6-10년</div>" + "<div class='table_top'>11-15년</div>" + "<div class='table_top'>16-20년</div>"
+                                + "<div class='table_top'>20-25년</div>" + "<div class='table_top'>26-30년</div>"+ "<div class='table_top'>31년↑</div>"
+
+                build_year_avg = Math.round(build_year[0], 0)+"년"
+                build_year_00_05 = Math.round(Number(build_year[1]),0).toLocaleString()
+                build_year_06_10 = Math.round(Number(build_year[2]),0).toLocaleString()
+                build_year_11_15 = Math.round(Number(build_year[3]),0).toLocaleString()
+                build_year_16_20 = Math.round(Number(build_year[4]),0).toLocaleString()
+                build_year_21_25 = Math.round(Number(build_year[5]),0).toLocaleString()
+                build_year_26_30 = Math.round(Number(build_year[6]),0).toLocaleString()
+                build_year_31 = Math.round(Number(build_year[7]),0).toLocaleString()
+
+                addon_html += "<div><strong>" + build_year_avg +"</strong></div>" + "<div>" + build_year_00_05 +"</div>" + "<div>" + build_year_06_10 + "</div>"
+                              + "<div>" + build_year_11_15 +"</div>" + "<div>" + build_year_16_20 + "</div>" + "<div>" + build_year_21_25 + "</div>"
+                              + "<div>" + build_year_26_30 + "</div>" + "<div>" + build_year_31 + "</div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+
+            //규제현황 표시
+            addon_html += "<div class='subRegion_info'>"              
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>규제현황</div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"regulation\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class = 'subRegion_regu_table'>"
+                regu_0 = regulation_info[0]
+                regu_1 = regulation_info[1]
+                regu_2 = regulation_info[2]
+                regu_3 = regulation_info[3]
+
+                if(regu_0 == '적용'){ regu_text_0 = "<span style='color:#B80F0A; font-weight:600'> 투기과열 </span>" } else{ regu_text_0 = "투기과열" }
+                if(regu_1 == '적용'){ regu_text_1 = "<span style='color:#B80F0A; font-weight:600'> 조정대상 </span>" } else{ regu_text_1 = "조정대상" }
+                if(regu_2 == '적용'){ regu_text_2 = "<span style='color:#000000; '> 분양가상한제 </span>" } else{ regu_text_2 = "분양가상한제" }
+                if(regu_3 == '적용'){ regu_text_3 = "<span style='color:#000000; '> 고분양가심사 </span>" } else{ regu_text_3 = "고분양가심사" }
+
+                addon_html += "<div class='table_top'>" + regu_text_0 + "</div>" + "<div class='table_top'>" + regu_text_1 + "</div>"
+                              + "<div class='table_top'>" + regu_text_2 + "</div>" + "<div class='table_top'>" + regu_text_3 + "</div>"                
+
+                if(regu_0 == '적용'){ regu_0 = "<span style='color:#B80F0A'> ● </span>" } else{ regu_0 = "X" }
+                if(regu_1 == '적용'){ regu_1 = "<span style='color:#B80F0A'> ● </span>" } else{ regu_1 = "X" }
+                if(regu_2 == '적용'){ regu_2 = "<span style='color:#000000'> O </span>" } else{ regu_2 = "X" }
+                if(regu_3 == '적용'){ regu_3 = "<span style='color:#000000'> O </span>" } else{ regu_3 = "X" }
+
+                addon_html += "<div>" + regu_0 + "</div>" + "<div>" + regu_1 + "</div>" + "<div>" + regu_2 + "</div>" + "<div>" + regu_3 + "</div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+          addon_html += "</div>"
+
+          addon_html += "<div id='subRegion_line3'>"
+            //인구
+            addon_html += "<div class='subRegion_info'>"
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(pop_score[0]) +"'>●</span>" + " 인구 <span style='font-size: 0.85em'>(" + pop_score[0].toFixed(2) + "점 / " + pop_score[1] + ")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"pop\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class = 'subRegion_pop_table1'>"
+                addon_html += "<div class='table_top'>총인구</div>" + "<div class='table_top'>세대수</div>" + "<div class='table_top'>세대당 인구</div>"
+
+                pop_total = Number(pop_info[0][0]).toLocaleString() + "명"
+                pop_house_num = Number(pop_info[0][1]).toLocaleString() + "세대"
+                pop_house_per = Number(pop_info[0][2]).toLocaleString() + "명"
+
+                addon_html += "<div><strong>" + pop_total + "</div>" + "<div>" + pop_house_num + "</div>" + "<div>" + pop_house_per + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='popChart'></canvas></div>"
+              
+              addon_html += "<div class = 'subRegion_pop_table2'>"
+                addon_html += "<div class='table_top'>5년</div>" + "<div class='table_top'><strong>3년</strong></div>" + "<div class='table_top'>1년</div>"
+                              +"<div class='table_top'>6개월</div>" + "<div class='table_top'>3개월</div>" + "<div class='table_top'>1개월</div>"
+
+                pop_rate_1m = Number(pop_rate[0]).toFixed(2)
+                pop_rate_3m = Number(pop_rate[1]).toFixed(2)
+                pop_rate_6m = Number(pop_rate[2]).toFixed(2)
+                pop_rate_1y = Number(pop_rate[3]).toFixed(2)
+                pop_rate_3y = Number(pop_rate[4]).toFixed(2)
+                pop_rate_5y = Number(pop_rate[5]).toFixed(2)
+                var pop_rate_text = ["(<전)", "5년", "3년", "1년", "6개월", "3개월", "1개월", "현재", "(후>)"]
+                var pop_rate_array = [null, pop_info[6][0], pop_info[5][0], pop_info[4][0], pop_info[3][0], pop_info[2][0], pop_info[1][0], pop_info[0][0], null]
+
+                if(pop_rate_1m < 0){ pop_rate_1m = "<span style='color:#fe4040'>-" + (pop_rate_1m)*-1 + "% </span>" } else{ pop_rate_1m = "<span style='color:#000'>+" + (pop_rate_1m) + "% </span>" }
+                if(pop_rate_3m < 0){ pop_rate_3m = "<span style='color:#fe4040'>-" + (pop_rate_3m)*-1 + "% </span>" } else{ pop_rate_3m = "<span style='color:#000'>+" + (pop_rate_3m) + "% </span>" }
+                if( pop_rate_6m < 0){ pop_rate_6m = "<span style='color:#fe4040'>-" + (pop_rate_6m)*-1 + "% </span>" } else{ pop_rate_6m = "<span style='color:#000'>+" + (pop_rate_6m) + "% </span>" }
+                if(pop_rate_1y < 0){ pop_rate_1y = "<span style='color:#fe4040'>-" + (pop_rate_1y)*-1 + "% </span>" } else{ pop_rate_1y = "<span style='color:#000'>+" + (pop_rate_1y) + "% </span>" }
+                if(pop_rate_3y < 0){ pop_rate_3y = "<span style='color:#fe4040'>-" + (pop_rate_3y)*-1 + "% </span>" } else{ pop_rate_3y = "<span style='color:#000'>+" + (pop_rate_3y) + "% </span>" }
+                if(pop_rate_5y < 0){ pop_rate_5y = "<span style='color:#fe4040'>-" + (pop_rate_5y)*-1 + "% </span>" } else{ pop_rate_5y = "<span style='color:#000'>+" + (pop_rate_5y) + "% </span>" }                
+
+                addon_html += "<div>" + pop_rate_5y + "</div>" + "<div><strong>" + pop_rate_3y + "</strong></div>" + "<div>" + pop_rate_1y + "</div>"
+                              + "<div>" + pop_rate_6m+ "</div>" + "<div>" + pop_rate_3m + "</div>" + "<div>" + pop_rate_1m + "</div>"
+              addon_html += "</div>" 
+            addon_html += "</div>"            
+
+            //매매가            
+            addon_html += "<div class='subRegion_info'>"
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(sales_score[0]) +"'>●</span>" + " 매매가격 <span style='font-size: 0.85em'>(" + sales_score[0].toFixed(2) + "점 / " + sales_score[1] + ")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"price\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+              
+              addon_html += "<div class = 'subRegion_price_table1'>"
+                addon_html += "<div class='table_top'>매매가 평균</div>" + "<div class='table_top'>분기 매매흐름</div>"
+                sales_price = (sales_quater_avg[sales_quater_avg.length-1]/100000).toFixed(2) + "억원"
+                addon_html += "<div><strong>" + sales_price + "</div>" + "<div>" + sales_score[2] + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='salesChart'></canvas></div>"
+
+              addon_html += "<div class = 'subRegion_price_table2'>"
+
+                for ( var p = 7 ; p < time_line.length ; p++ ){
+                  if( p == time_line.length-1){
+                    addon_html += "<div class='table_top'><strong>" + time_line[p] + "</strong></div>"
+                  }
+                  else{
+                    addon_html += "<div class='table_top'>" + time_line[p] + "</div>"
+                  }
+                }
+
+                for ( var p = 6 ; p < sales_rate_quater_avg.length ; p++ ){
+                  if(sales_rate_quater_avg[p] < 0){
+                    deco_tag = "<span style='color:#fe4040'>-" + Number(sales_rate_quater_avg[p]*-1).toFixed(2) + "% </span>"
+                    if( p == sales_rate_quater_avg.length-1){
+                      deco_tag = "<span style='color:#fe4040;'><strong>-" + Number(sales_rate_quater_avg[p]*-1).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+                  else{
+                    deco_tag = "<span style='color:#000000'>+" + Number(sales_rate_quater_avg[p]).toFixed(2) + "% </span>"
+                    if(p == sales_rate_quater_avg.length-1){
+                      deco_tag = "<span style='color:#000000'><strong>+" + Number(sales_rate_quater_avg[p]).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+
+                  sales_text = "<div>" + deco_tag + "</div>"
+                  addon_html += sales_text
+                }
+
+                graph_time_line = time_line.slice(7, time_line.length)
+                var sales_rate_text = ["(<전)", ...graph_time_line, "(후>)"]
+
+                graph_sales_quater_avg = sales_quater_avg.slice(7, sales_quater_avg.length)
+                for(k = 0 ; k < graph_sales_quater_avg.length; k++){
+                  graph_sales_quater_avg[k] = (graph_sales_quater_avg[k]/100000).toFixed(2)
+                }
+                var sales_rate_array = [null, ...graph_sales_quater_avg, null]
+              addon_html += "</div>"
+            addon_html += "</div>"
+
+            //전세가
+            addon_html += "<div class='subRegion_info'>"
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(rent_score[0]) +"'>●</span>" + " 전세가격 <span style='font-size: 0.85em'>(" + rent_score[0].toFixed(2) + "점 / " + rent_score[1] + ")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"rent\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+              
+              addon_html += "<div class = 'subRegion_rent_table1'>"
+                addon_html += "<div class='table_top'>전세가 평균</div>" + "<div class='table_top'>전세가율</div>" + "<div class='table_top'>분기 전세흐름</div>"
+                rent_price = (rent_quater_avg[rent_quater_avg.length-1]/100000).toFixed(2) + "억원"
+                addon_html += "<div><strong>" + rent_price + "</div>" + "<div>" + rent_price_rate[0].toFixed(1) + "% <span style='font-size: 0.8em'>(전년동월 " + rent_price_rate[1].toFixed(1) + "%)</span></div>" + "<div>" + rent_score[2] + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='rentChart'></canvas></div>"
+
+              addon_html += "<div class = 'subRegion_price_table2'>"
+                for ( p = 7 ; p < time_line.length ; p++ ){
+                  if( p == time_line.length-1){
+                    addon_html += "<div class='table_top'><strong>" + time_line[p] + "</strong></div>"
+                  }
+                  else{
+                    addon_html += "<div class='table_top'>" + time_line[p] + "</div>"
+                  }
+                }
+
+                for ( p = 6 ; p < rent_rate_quater_avg.length ; p++ ){
+                  if(rent_rate_quater_avg[p] < 0){
+                    deco_tag = "<span style='color:#fe4040'>-" + Number(rent_rate_quater_avg[p]*-1).toFixed(2) + "% </span>"
+                    if( p == rent_rate_quater_avg.length-1 ){
+                      deco_tag = "<span style='color:#fe4040'><strong>-" + Number(rent_rate_quater_avg[p]*-1).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+                  else{
+                    deco_tag = "<span style='color:#000'>+" + Number(rent_rate_quater_avg[p]).toFixed(2) + "% </span>"
+                    if( p == rent_rate_quater_avg.length-1 ){
+                      deco_tag = "<span style='color:#000'><strong>+" + Number(rent_rate_quater_avg[p]).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+
+                  rent_text = "<div>" + deco_tag + "</div>"
+                  addon_html += rent_text
+                }
+
+                graph_time_line = time_line.slice(7, time_line.length)
+                var rent_rate_text = ["(<전)", ...graph_time_line, "(후>)"]
+
+                graph_rent_quater_avg = rent_quater_avg.slice(7, rent_quater_avg.length)
+                for(k = 0 ; k < graph_rent_quater_avg.length; k++){
+                  graph_rent_quater_avg[k] = (graph_rent_quater_avg[k]/100000).toFixed(2)
+                }
+                
+                var rent_rate_array = [null, ...graph_rent_quater_avg, null]
+
+              addon_html += "</div>"
+            addon_html += "</div>"
+
+            //거래량
+            addon_html += "<div class='subRegion_info'>"             
+
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(deal_score[0]) +"'>●</span>" + " 거래량 <span style='font-size: 0.85em'>(" + deal_score[0].toFixed(2) + "점 / " + deal_score[1] + ")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"deal\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+          
+                addon_html += "<div class = 'subRegion_deal_table1'>"
+                addon_html += "<div class='table_top'>3년 평균</div>" + "<div class='table_top'>당분기</div>" + "<div class='table_top'>평균대비</div>"
+                
+                deal_3y_avg_text = Number(deal_3y_avg).toFixed(0) + "건"
+                deal_current_text = Number(deal_quater_avg[deal_quater_avg.length-1]).toFixed(0) + "건"
+                deal_rate = ((deal_quater_avg[deal_quater_avg.length-1]/deal_3y_avg)*100).toFixed(2) + "%"
+
+                addon_html += "<div><strong>" + deal_3y_avg_text + "</div>" + "<div>" + deal_current_text + "</div>" + "<div>" + deal_rate + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='dealChart'></canvas></div>"
+
+              addon_html += "<div class = 'subRegion_deal_table2'>"
+                for ( p = 7 ; p < time_line.length ; p++ ){
+                  if( p == time_line.length-1){
+                    addon_html += "<div class='table_top'><strong>" + time_line[p] + "</strong></div>"
+                  }
+                  else{
+                    addon_html += "<div class='table_top'>" + time_line[p] + "</div>"
+                  }
+                }
+
+                graph_time_line = time_line.slice(7, time_line.length)
+                var sales_rate_text = ["(<전)", ...graph_time_line, "(후>)"]
+
+                graph_deal_quater_avg = deal_quater_avg.slice(7, deal_quater_avg.length)
+                for(k = 0 ; k < graph_deal_quater_avg.length; k++){
+                  graph_deal_quater_avg[k] = graph_deal_quater_avg[k].toFixed(0)
+                }
+
+                var deal_text_array = ["(<전)", ...graph_time_line, "(후>)"]
+                var deal_array = [null, ...graph_deal_quater_avg, null]
+                var deal_3y = [deal_3y_avg, deal_3y_avg, deal_3y_avg, deal_3y_avg, deal_3y_avg, deal_3y_avg, deal_3y_avg, deal_3y_avg]
+
+                for ( var p = 6 ; p < deal_rate_quater_avg.length ; p++ ){
+                  if(deal_rate_quater_avg[p] < 0){
+                    deco_tag = "<span style='color:#fe4040'>-" + Number(deal_rate_quater_avg[p]*-1).toFixed(2) + "% </span>"
+                    if( p == rent_rate_quater_avg.length-1 ){
+                      deco_tag = "<span style='color:#fe4040'><strong>-" + Number(deal_rate_quater_avg[p]*-1).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+                  else{
+                    deco_tag = "<span style='color:#000'>+" + Number(deal_rate_quater_avg[p]).toFixed(2) + "% </span>"
+                    if( p == rent_rate_quater_avg.length-1 ){
+                      deco_tag = "<span style='color:#000'><strong>+" + Number(deal_rate_quater_avg[p]).toFixed(2) + "% </strong></span>"
+                    }
+                  }
+
+                  deal_text = "<div>" + deco_tag + "</div>"
+                  addon_html += deal_text
+                }
+
+
+              addon_html += "</div>"
+            addon_html += "</div>"
+
+            
+
+            //입주물량
+            addon_html += "<div class='subRegion_info'>"              
+
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(supply_score[0]) +"'>●</span>" + " 공급물량 <span style='font-size: 0.85em'>(" + supply_score[0].toFixed(2) + "점 / " + supply_score[1] + ")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"supply\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class = 'subRegion_supply_table1'>"
+                addon_html += "<div class='table_top'>적정공급 <span style='font-size: 0.6em'>(인구x0.6%)</span></div>" + "<div class='table_top'>당해공급</div>"+ "<div class='table_top'>적정공급 대비</div>"
+                
+                supply_proper_formatted = Number(supply_proper).toLocaleString() + "세대"
+                supply_volume_this_year = (Number(supply_volume[0]) + Number(supply_new_volume[0])).toLocaleString() + "세대"
+                supply_volume_plus_minus = supply_proper - (Number(supply_volume[0]) + Number(supply_new_volume[0]))
+                if(supply_volume_plus_minus < 0){
+                  supply_volume_plus_minus = (supply_volume_plus_minus * -1).toLocaleString() + "세대 과다"
+                }
+                else{
+                  supply_volume_plus_minus = supply_volume_plus_minus.toLocaleString() + "세대 부족"
+                }
+
+                addon_html += "<div><strong>" + supply_proper_formatted + "</div>" + "<div>" + supply_volume_this_year + "</div>" + "<div>" + supply_volume_plus_minus + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='supplyChart'></canvas></div>"
+
+              addon_html += "<div class = 'subRegion_supply_table2'>"
+                addon_html += "<div class='table_top'><strong>당해</strong></div>" + "<div class='table_top'>1년 후</div>" + "<div class='table_top'>2년 후</div>" + "<div class='table_top'>3년 후</div>" + "<div class='table_top'>4년 후</div>"
+
+                supply_0y = ( Number(supply_volume[0]) + Number(supply_new_volume[0]) ).toLocaleString() + "세대"                
+                supply_1y = ( Number(supply_volume[1]) + Number(supply_new_volume[1]) ).toLocaleString() + "세대"
+                supply_2y = ( Number(supply_volume[2]) + Number(supply_new_volume[2]) ).toLocaleString() + "세대"
+                supply_3y = ( Number(supply_volume[3]) + Number(supply_new_volume[3]) ).toLocaleString() + "세대"
+                supply_4y = ( Number(supply_volume[4]) + Number(supply_new_volume[4]) ).toLocaleString() + "세대"
+
+                supply_new_1y = Number(supply_new_volume[1]).toLocaleString() + "세대"
+                supply_new_2y = Number(supply_new_volume[2]).toLocaleString() + "세대"
+                supply_new_3y = Number(supply_new_volume[3]).toLocaleString() + "세대"
+                supply_new_4y = Number(supply_new_volume[4]).toLocaleString() + "세대"                
+
+                var supply_text = ["", "당해", "1년 후", "2년 후", "3년 후", "4년 후", ""]
+                var supply_array = [null, supply_volume[0], supply_volume[1], supply_volume[2], supply_volume[3], supply_volume[4], null]
+
+                if(supply_new_volume[0] == 0){new_volume_current = null} else{new_volume_current = supply_new_volume[0]}
+                if(supply_new_volume[1] == 0){new_volume_1y = null} else{new_volume_1y = supply_new_volume[1]}
+                if(supply_new_volume[2] == 0){new_volume_2y = null} else{new_volume_2y = supply_new_volume[2]}
+                if(supply_new_volume[3] == 0){new_volume_3y = null} else{new_volume_3y = supply_new_volume[3]}
+                if(supply_new_volume[4] == 0){new_volume_4y = null} else{new_volume_4y = supply_new_volume[4]}                
+
+                var supply_new_array = [null, new_volume_current, new_volume_1y, new_volume_2y, new_volume_3y, new_volume_4y, null]
+                var supply_10y = [supply_proper, supply_proper, supply_proper, supply_proper, supply_proper, supply_proper, supply_proper]
+
+                addon_html += "<div><strong>" + supply_0y + "</strong></div>" + "<div>" + supply_1y + "</div>" + "<div>" + supply_2y + "</div>" + "<div>" + supply_3y + "</div>" + "<div>" + supply_4y + "</div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+
+            //미분양
+            addon_html += "<div class='subRegion_info'>"              
+
+              find_name = selectedSubRegion.split("_")
+              var non_sales_add_text = ""
+              if(find_name[2] == "Goyang"){ non_sales_add_text = " (고양시 전체)" }
+              if(find_name[2] == "Seongnam"){ non_sales_add_text = " (성남시 전체)" }
+              if(find_name[2] == "Suwon"){ non_sales_add_text = " (수원시 전체)" }
+              if(find_name[2] == "Ansan"){ non_sales_add_text = " (안산시 전체)" }
+              if(find_name[2] == "Anyang"){ non_sales_add_text = " (안양시 전체)" }
+              if(find_name[2] == "Yongin"){ non_sales_add_text = " (용인시 전체)" }
+              if(find_name[2] == "Cheongju"){ non_sales_add_text = " (청주시 전체)" }
+              if(find_name[2] == "Cheonan"){ non_sales_add_text = " (천안시 전체)" }
+              if(find_name[2] == "Jeonju"){ non_sales_add_text = " (전주시 전체)" }
+              if(find_name[2] == "Pohang"){ non_sales_add_text = " (포항시 전체)" }
+              if(find_name[2] == "Changwon"){ non_sales_add_text = " (창원시 전체)" }              
+
+              addon_html += "<div class='subRegion_title'>"
+                addon_html += "<div class='subRegion_name'>" + "<span style='color:" + set_color(non_sales_result[0]) +"'>●</span>" + " 미분양" + non_sales_add_text + "<span style='font-size: 0.85em'> (" + non_sales_result[0].toFixed(2) + "점 / "+ non_sales_result[2] +")</span></div>"
+                addon_html += "<div class='subRegion_qna' data-bs-toggle='modal' data-bs-target='#exampleModal' id='myModal' onClick='showNotice(\"non_sales\")'><i class='fa-solid fa-circle-question'></i></div>"
+              addon_html += "</div>"
+          
+                addon_html += "<div class = 'subRegion_non_sales_table1'>"
+                addon_html += "<div class='table_top'>당월 미분양</div>" + "<div class='table_top'>위험수준</div>"
+                
+                non_sales_this = Number(non_sales_result[3]).toFixed(0) + "세대"                
+
+                addon_html += "<div><strong>" + non_sales_this + "</div>" + "<div>" + non_sales_result[1] + "</strong></div>"
+              addon_html += "</div>"
+
+              addon_html += "<div class='graph'> <canvas id='nonSalesChart'></canvas></div>"
+
+              addon_html += "<div class = 'subRegion_non_sales_table2'>"
+                addon_html += "<div class='table_top'>5개월 전</div>" + "<div class='table_top'>4개월 전</div>" + "<div class='table_top'>3개월 전</div>"
+                                + "<div class='table_top'>2개월 전</div>" + "<div class='table_top'><strong>1개월 전</strong></div>"
+                
+                non_sales_1m = Number(non_sales_result[4]).toFixed(0) + "세대"
+                non_sales_2m = Number(non_sales_result[5]).toFixed(0) + "세대"
+                non_sales_3m = Number(non_sales_result[6]).toFixed(0) + "세대"
+                non_sales_4m = Number(non_sales_result[7]).toFixed(0) + "세대"
+                non_sales_5m = Number(non_sales_result[8]).toFixed(0) + "세대"
+
+                var non_sales_text = ["(<전)", "5개월", "4개월", "3개월",  "2개월", "1개월", "당월", "(후>)"]
+                var non_sales_array = [null, Number(non_sales_result[8]).toFixed(0), Number(non_sales_result[7]).toFixed(0), Number(non_sales_result[6]).toFixed(0), Number(non_sales_result[5]).toFixed(0)
+                                       , Number(non_sales_result[4]).toFixed(0), Number(non_sales_result[3]).toFixed(0), null]
+
+                addon_html += "<div>" + non_sales_5m + "</div>" + "<div>" + non_sales_4m + "</div>" + "<div>" + non_sales_3m + "</div>"
+                              + "<div>" + non_sales_2m + "</div>" + "<div><strong>" + non_sales_1m + "</strong></div>"
+              addon_html += "</div>"
+            addon_html += "</div>"
+          addon_html += "</div>"
+      }
+    }
+  }
+
+  $('#dataList').append(addon_html);  
+  if(selectedRegion != 'Korea'){
+    popMax = Math.max(...pop_rate_array) * 1.008
+    drawRankChart(pop_rate_text, pop_rate_array, "popChart", popMax)
+
+    salesMax = Math.max(...sales_rate_array) * 1.05
+    drawRankChart(sales_rate_text, sales_rate_array, "salesChart", salesMax)
+
+    dealMax = Math.max(...deal_array) * 1.1
+    drawDealChart(deal_text_array, deal_array, "dealChart", dealMax, deal_3y)
+
+    rentMax = Math.max(...rent_rate_array) * 1.1
+    drawRankChart(rent_rate_text, rent_rate_array, "rentChart", rentMax)
+
+    drawSupplyChart(supply_text, supply_array, supply_new_array, "supplyChart", supply_10y)   
+    drawNonSalesChart(non_sales_text, non_sales_array, "nonSalesChart")
+  }
+  saveLocalStorage()
+}
+
+function showNotice(info){
+  modal_title = ""
+  modal_info= ""
+
+  if(info == "pop"){
+    modal_title = biz_title_pop
+    modal_info = biz_info_pop
+  }
+  if(info == "price"){
+    modal_title = biz_title_price
+    modal_info = biz_info_price
+  }
+  if(info == "deal"){
+    modal_title = biz_title_deal
+    modal_info = biz_info_deal
+  }
+  if(info == "rent"){
+    modal_title = biz_title_rent_rate
+    modal_info = biz_info_rent_rate
+  }
+  if(info == "supply"){
+    modal_title = biz_title_supply
+    modal_info = biz_info_supply
+  }
+  if(info == "non_sales"){
+    modal_title = biz_title_non_sales
+    modal_info = biz_info_non_sales
+  }
+  if(info == "apt_years"){
+    modal_title = biz_title_apt_years
+    modal_info = biz_info_apt_years
+  }
+  if(info == "regulation"){
+    modal_title = biz_title_regulation
+    modal_info = biz_info_regulation
+  }
+
+    var titleHtml = "<div class='popupTitle'>" + modal_title + "</div>";
+    var footerHtml = ""
+    var detailHtml = "<div class='notice'>" + modal_info + "</div>"
+    
+    footerHtml += "<div class='modal-footer'>"
+    footerHtml += "<div class='notice' id='footerCheck' ><strong>업무 협업, 데이터 커스터마이징 문의는 '이메일 문의하기' 또는 '카카오톡 1:1 문의하기'를 통해 진행해 주세요.</strong></div>"
+    footerHtml += "<div id='footerBtn2'><a href='mailto:aptranking@gmail.com'><button type='button' class='goApt' style='font-size: 0.85em'>이메일 문의하기</button></a></div>"
+    footerHtml += "<div id='footerBtn2'><a href='https://pf.kakao.com/_vESNb/chat' target='_blank'><button type='button' class='gokakao' style='font-size: 0.85em'>카카오톡 1:1 문의하기</button></a></div>"
+    footerHtml += "</div>"  
+
+
+    $('#exampleModalLabel').html(titleHtml);
+    $('#aptDetail').html(detailHtml);
+    //$('#footer').html(footerHtml);
+    $('#footerCheck').css({"grid-column" : "span 2"})
+    $('.modal-footer').css({"padding-top" : "3px"})
+  }
+
+  var pcDevice = "win16|win32|win64|mac|macintel"
+
+  function openAptrank(){
+    to_subRegion = selectedSubRegion
+
+    if(selectedSubRegion == "4128000000_Gyeonggi_Goyang"){ to_subRegion = "4128700000_Gyeonggi_Goyang_Ilsanseo"}
+    if(selectedSubRegion == "4113000000_Gyeonggi_Seongnam"){ to_subRegion = "4113500000_Gyeonggi_Seongnam_Bundang" }
+    if(selectedSubRegion == "4111000000_Gyeonggi_Suwon"){ to_subRegion = "4111700000_Gyeonggi_Suwon_Yeongtong" }
+    if(selectedSubRegion == "4127000000_Gyeonggi_Ansan"){ to_subRegion = "4127100000_Gyeonggi_Ansan_Sangnok" }
+    if(selectedSubRegion == "4117000000_Gyeonggi_Anyang"){ to_subRegion = "4117300000_Gyeonggi_Anyang_Dongan" }
+    if(selectedSubRegion == "4146000000_Gyeonggi_Yongin"){ to_subRegion = "4146500000_Gyeonggi_Yongin_Suji" }
+
+    aURL = "https://www.aptrank.kr" + "?reg=" + selectedRegion +"&sub=" + to_subRegion
+    if ( navigator.platform ) {
+        if ( pcDevice.indexOf(navigator.platform.toLowerCase()) < 0 ) {
+          location.href = aURL
+        } else {
+          window.open(aURL)
+        }
+    }    
+  }
+</script>
+</html>
